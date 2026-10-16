@@ -44,6 +44,8 @@ export default defineConfig({
   appearance: "dark",
   head: [
     ["meta", { name: "theme-color", content: "#cffb2d" }],
+    // Search engine ownership verification (Google Search Console).
+    ["meta", { name: "google-site-verification", content: "EICOKV4M-kvzgj0yUEuEGQOEvV4H8KFLcy2H_49CmNw" }],
     ["link", { rel: "icon", href: `${base}favicon.svg` }],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:image", content: `${origin}/social-card.png` }],
