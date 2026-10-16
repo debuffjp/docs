@@ -1,6 +1,6 @@
 # Working with AI agents
 
-Debuff gives agents the same evidence you'd want before trusting a change: what's in the project, what's tunable, what's happening at runtime, and whether the change worked.
+debuff gives agents the same evidence you'd want before trusting a change: what's in the project, what's tunable, what's happening at runtime, and whether the change worked.
 
 | Question | Interface |
 | --- | --- |

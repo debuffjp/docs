@@ -6,7 +6,7 @@ const apiSidebarFile = new URL("../api/typedoc-sidebar.json", import.meta.url);
 const apiSidebar = existsSync(apiSidebarFile) ? JSON.parse(readFileSync(apiSidebarFile, "utf8")) : [];
 
 export default defineConfig({
-  title: "Debuff",
+  title: "debuff",
   description: "Agent-native toolkit for small, polished 2D web games. More room for play.",
   base: "/docs/",
   cleanUrls: true,
@@ -56,6 +56,6 @@ export default defineConfig({
     socialLinks: [{ icon: "github", link: "https://github.com/debuffjp/debuff" }],
     editLink: { pattern: "https://github.com/debuffjp/docs/edit/main/:path", text: "Edit this page" },
     search: { provider: "local" },
-    footer: { message: "MIT licensed", copyright: "Debuff contributors" },
+    footer: { message: "MIT licensed", copyright: "debuff contributors" },
   },
 });
