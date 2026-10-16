@@ -11,6 +11,9 @@ const best = ref(0);
 const playing = ref(false);
 const started = ref(false);
 const failed = ref(false);
+/** The stress test is opt-in: calm board by default. */
+const stressing = ref(false);
+const stressed = ref(false);
 let game: Plinko | undefined;
 let observer: IntersectionObserver | undefined;
 let visible = false;
@@ -23,6 +26,13 @@ function sync() {
   if (document.hidden) return;
   if (playing.value && visible) game?.play();
   else game?.pause();
+}
+
+function toggleStress() {
+  stressing.value = !stressing.value;
+  stressed.value ||= stressing.value;
+  game?.stress(stressing.value);
+  if (stressing.value && !playing.value) toggle();
 }
 
 function toggle() {
@@ -88,7 +98,10 @@ onBeforeUnmount(() => {
     <figcaption>
       <span class="count"><strong>{{ fmt(balls) }}</strong> sprites</span>
       <span v-if="playing">{{ fps }} fps</span>
-      <span v-if="best && started" class="best">{{ fmt(best) }} held at 60 fps</span>
+      <span v-if="best && stressed" class="best">{{ fmt(best) }} held at 60 fps</span>
+      <button class="stress" type="button" :aria-pressed="stressing" @click="toggleStress">
+        {{ stressing ? "stop stress test" : "stress test" }}
+      </button>
       <span class="hint">click the board to drop more ·
         <a href="https://github.com/debuffjp/docs/blob/main/examples/plinko/plinko.ts">source</a></span>
     </figcaption>
@@ -174,6 +187,18 @@ figcaption {
 .count strong {
   color: #cffb2d;
   font-size: 14px;
+}
+.stress {
+  margin-left: auto;
+  padding: 0 8px;
+  border-radius: 999px;
+  border: 1px solid #cffb2d66;
+  color: #cffb2d;
+  font: inherit;
+}
+.stress[aria-pressed="true"] {
+  background: #cffb2d;
+  color: #11140d;
 }
 .best {
   color: var(--vp-c-text-1);

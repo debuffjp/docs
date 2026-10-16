@@ -25,6 +25,12 @@ const FLOOR = SIZE - 6;
 const GRAVITY = 520;
 const MAX = 250_000;
 const START = 300;
+/**
+ * Calm mode (the default): a few hundred bigger balls, so the board reads as a gentle plinko game.
+ * Tens of thousands of tiny moving dots make pixels pop on and off everywhere at once, which looks
+ * like flicker; that load only runs when a visitor asks for the stress test.
+ */
+const CALM = 350;
 /** Most balls added per frame, so the board fills gradually instead of jumping. */
 const MAX_SPAWN = 250;
 /** A two-armed paddle spinning mid-board, so the stream gets batted around instead of pouring straight down. */
@@ -49,6 +55,8 @@ export interface Plinko {
   pause(): void;
   /** Advance `steps` fixed steps without the loop (a still preview frame before playing). */
   still(steps: number): void;
+  /** Stress test on: keep adding balls while the device holds 60 fps. Off: drain back to a calm board. */
+  stress(on: boolean): void;
   dispose(): void;
 }
 
@@ -69,6 +77,8 @@ export function plinko(canvas: HTMLCanvasElement, options: { onStats?: (balls: n
   const ballScale = 0.5; // drawn at half size: crisp on high-DPI screens
   // One reusable options object per colour: drawing a ball allocates nothing.
   const looks = TINTS.map((t) => ({ scaleX: ballScale, scaleY: ballScale, tint: t }));
+  // Calm balls: bigger and more opaque, so a few hundred read as solid, softly moving marbles.
+  const calmLooks = TINTS.map((t) => ({ scaleX: 0.85, scaleY: 0.85, tint: t }));
 
   // A full-width staggered peg grid, like a real Galton board: every ball meets pegs all the way down.
   const rowOffset = (r: number) => (r % 2 ? COL_GAP / 2 : 0) + (SIZE - Math.floor(SIZE / COL_GAP) * COL_GAP) / 2 + COL_GAP / 2;
@@ -83,7 +93,8 @@ export function plinko(canvas: HTMLCanvasElement, options: { onStats?: (balls: n
   const look = new Uint8Array(MAX);
   const bins = new Float64Array(BINS);
   let count = 0;
-  let target = START;
+  let stressing = false;
+  let target = CALM;
   let best = 0;
   let rampTimer = 0;
   let statTimer = 0;
@@ -102,7 +113,7 @@ export function plinko(canvas: HTMLCanvasElement, options: { onStats?: (balls: n
   // A click queues a drop that trickles in over a few frames (no burst flash).
   canvas.addEventListener("pointerdown", (e) => {
     dropAt = game.toLogical(e.clientX, e.clientY).x;
-    dropLeft += 400;
+    dropLeft += stressing ? 400 : 40;
   });
 
   game
@@ -114,7 +125,9 @@ export function plinko(canvas: HTMLCanvasElement, options: { onStats?: (balls: n
         const cosA = Math.cos(spin);
         const sinA = Math.sin(spin);
         rampTimer += dt;
-        if (rampTimer > 0.5) {
+        if (!stressing) {
+          target = CALM;
+        } else if (rampTimer > 0.5) {
           rampTimer = 0;
           const { fps, workP95Ms } = game.stats.summary();
           if (fps >= 57 && workP95Ms < 12) {
@@ -249,8 +262,9 @@ export function plinko(canvas: HTMLCanvasElement, options: { onStats?: (balls: n
         }
         for (let b = 1; b < BINS; b++) draw.rect(b * BIN_W - 1, BIN_TOP, 2, SIZE - BIN_TOP, "#e7fd9640");
         // Fixed opacity, normal blending: dense areas fill in calmly, brightness never pulses.
-        draw.alpha = BALL_ALPHA;
-        for (let i = 0; i < count; i++) draw.sprite(ballImage, x[i] as number, y[i] as number, looks[look[i] as number]);
+        draw.alpha = stressing ? BALL_ALPHA : 0.9;
+        const set = stressing ? looks : calmLooks;
+        for (let i = 0; i < count; i++) draw.sprite(ballImage, x[i] as number, y[i] as number, set[look[i] as number]);
         draw.alpha = 1;
         for (let r = 0; r < ROWS; r++) {
           const off = rowOffset(r);
@@ -283,6 +297,10 @@ export function plinko(canvas: HTMLCanvasElement, options: { onStats?: (balls: n
     play: () => game.start(),
     pause: () => game.stop(),
     still: (steps) => game.step(steps),
+    stress(on) {
+      stressing = on;
+      target = on ? Math.max(START, count) : CALM;
+    },
     dispose: () => game.dispose(),
   };
 }
