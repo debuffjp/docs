@@ -27,6 +27,14 @@ const MAX = 250_000;
 const START = 300;
 /** Most balls added per frame, so the board fills gradually instead of jumping. */
 const MAX_SPAWN = 250;
+/** A two-armed paddle spinning mid-board, so the stream gets batted around instead of pouring straight down. */
+const SPIN_X = SIZE / 2;
+const SPIN_Y = TOP + 6 * ROW_GAP;
+const SPIN_LEN = 52; // arm length from the hub
+const SPIN_HALF = 3; // half the arm thickness
+const SPIN_SPEED = 1.4; // radians per second
+/** Pegs inside the paddle's sweep are left out. */
+const SPIN_CLEAR = SPIN_LEN + 8;
 
 // One hue. Many saturated colours churning in a dense field read as strobing static; a single soft
 // lime at low opacity lets density build into a steady glow instead.
@@ -65,6 +73,8 @@ export function plinko(canvas: HTMLCanvasElement, options: { onStats?: (balls: n
   // A full-width staggered peg grid, like a real Galton board: every ball meets pegs all the way down.
   const rowOffset = (r: number) => (r % 2 ? COL_GAP / 2 : 0) + (SIZE - Math.floor(SIZE / COL_GAP) * COL_GAP) / 2 + COL_GAP / 2;
   const pegsPerRow = (r: number) => Math.floor((SIZE - rowOffset(r)) / COL_GAP) + 1;
+  const pegClear = (px: number, py: number) => (px - SPIN_X) ** 2 + (py - SPIN_Y) ** 2 < SPIN_CLEAR * SPIN_CLEAR;
+  let spin = 0;
 
   const x = new Float32Array(MAX);
   const y = new Float32Array(MAX);
@@ -100,6 +110,9 @@ export function plinko(canvas: HTMLCanvasElement, options: { onStats?: (balls: n
       id: "plinko",
       update(dt) {
         // Grow slowly while the device keeps up; ease off when frames drop. `best` = most held at full speed.
+        spin += SPIN_SPEED * dt;
+        const cosA = Math.cos(spin);
+        const sinA = Math.sin(spin);
         rampTimer += dt;
         if (rampTimer > 0.5) {
           rampTimer = 0;
@@ -139,10 +152,11 @@ export function plinko(canvas: HTMLCanvasElement, options: { onStats?: (balls: n
             const off = rowOffset(r);
             const c = Math.max(0, Math.min(pegsPerRow(r) - 1, Math.round((bx - off) / COL_GAP)));
             const px = off + c * COL_GAP;
+            const cleared = pegClear(px, py);
             const dx = bx - px;
             const dy = by - py;
             const d2 = dx * dx + dy * dy;
-            if (d2 < min * min && d2 > 0.0001) {
+            if (!cleared && d2 < min * min && d2 > 0.0001) {
               const d = Math.sqrt(d2);
               const nx = dx / d;
               const ny = dy / d;
@@ -152,6 +166,40 @@ export function plinko(canvas: HTMLCanvasElement, options: { onStats?: (balls: n
               if (dot < 0) {
                 bvx = (bvx - 1.5 * dot * nx) * 0.85 + (rnd() - 0.5) * 20;
                 bvy = (bvy - 1.5 * dot * ny) * 0.6;
+              }
+            }
+          }
+          // The paddle: two arms through the hub. Push the ball out of an arm and add the arm's own
+          // surface speed (spin × radius), so balls get flung rather than just sliding off.
+          const rx = bx - SPIN_X;
+          const ry = by - SPIN_Y;
+          const reach = SPIN_LEN + BALL_R + SPIN_HALF;
+          if (rx * rx + ry * ry < reach * reach) {
+            for (let arm = 0; arm < 2; arm++) {
+              // Arm direction: angle spin, and spin + 90°.
+              const ux = arm === 0 ? cosA : -sinA;
+              const uy = arm === 0 ? sinA : cosA;
+              const along = Math.max(-SPIN_LEN, Math.min(SPIN_LEN, rx * ux + ry * uy));
+              const cx = rx - ux * along;
+              const cy = ry - uy * along;
+              const dist2 = cx * cx + cy * cy;
+              const hit = BALL_R + SPIN_HALF;
+              if (dist2 < hit * hit && dist2 > 0.0001) {
+                const dist = Math.sqrt(dist2);
+                const nx = cx / dist;
+                const ny = cy / dist;
+                bx += nx * (hit - dist);
+                by += ny * (hit - dist);
+                // Surface velocity of the arm at the contact point.
+                const svx = -SPIN_SPEED * (uy * along);
+                const svy = SPIN_SPEED * (ux * along);
+                const rvx = bvx - svx;
+                const rvy = bvy - svy;
+                const dot = rvx * nx + rvy * ny;
+                if (dot < 0) {
+                  bvx = svx + (rvx - 1.6 * dot * nx) * 0.9;
+                  bvy = svy + (rvy - 1.6 * dot * ny) * 0.9;
+                }
               }
             }
           }
@@ -211,10 +259,22 @@ export function plinko(canvas: HTMLCanvasElement, options: { onStats?: (balls: n
             // so pegs never seem to blink as balls stream past.
             const px = off + c * COL_GAP;
             const py = TOP + r * ROW_GAP;
+            if (pegClear(px, py)) continue;
             draw.circle(px, py, PEG_R + 1, "#e7fd96");
             draw.circle(px, py, PEG_R - 0.5, INK);
           }
         }
+        draw.push();
+        draw.translate(SPIN_X, SPIN_Y);
+        draw.rotate(spin);
+        for (let arm = 0; arm < 2; arm++) {
+          draw.rect(-SPIN_LEN - 1, -SPIN_HALF - 1, SPIN_LEN * 2 + 2, SPIN_HALF * 2 + 2, "#e7fd96");
+          draw.rect(-SPIN_LEN + 1, -SPIN_HALF + 1, SPIN_LEN * 2 - 2, SPIN_HALF * 2 - 2, INK);
+          draw.rotate(Math.PI / 2);
+        }
+        draw.pop();
+        draw.circle(SPIN_X, SPIN_Y, 5, "#e7fd96");
+        draw.circle(SPIN_X, SPIN_Y, 2.5, INK);
       },
     })
     .go("plinko");

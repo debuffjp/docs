@@ -69,9 +69,8 @@ onBeforeUnmount(() => {
   <figure class="plinko" ref="frame">
     <div class="board">
       <canvas ref="canvas" aria-label="plinko: balls falling through pegs, drawn by debuff. Click the board to drop more." />
-      <button v-if="!started && !failed" class="play" type="button" @click="toggle">
-        Play the demo
-        <small>fast-moving particles</small>
+      <button v-if="!started && !failed" class="play" type="button" aria-label="Play the demo" title="Play" @click="toggle">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.5v11a1 1 0 0 0 1.5.86l8.5-5.5a1 1 0 0 0 0-1.72L6 1.64A1 1 0 0 0 4.5 2.5z" /></svg>
       </button>
       <button
         v-else-if="!failed"
@@ -120,21 +119,19 @@ onBeforeUnmount(() => {
   position: absolute;
   inset: 0;
   margin: auto;
-  width: fit-content;
-  height: fit-content;
+  width: 64px;
+  height: 64px;
   display: grid;
-  gap: 2px;
-  padding: 10px 20px;
+  place-items: center;
   border-radius: 999px;
   background: #cffb2d;
   color: #11140d;
-  font-weight: 600;
   box-shadow: 0 6px 24px #0008;
 }
-.play small {
-  font-weight: 400;
-  font-size: 11px;
-  opacity: 0.75;
+.play svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
 }
 .toggle {
   position: absolute;
