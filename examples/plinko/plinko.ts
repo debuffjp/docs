@@ -1,24 +1,31 @@
 /**
- * plinko: a debuff stress test you can play. Balls fall through pegs into bins, and the game keeps
- * adding balls while it holds 60 fps, so the counter shows how many sprites debuff draws on this
- * device. Click or tap to drop a burst where you point.
+ * plinko: a debuff stress test you can play. Balls fall through a peg board into bins, and the game
+ * keeps adding balls while it holds 60 fps, so the counter shows how many sprites debuff draws on this
+ * device. Click or tap to drop more where you point.
+ *
+ * Built to be calm to watch: fixed opacity and normal blending (brightness never pulses with the count),
+ * balls added and removed gradually (no sudden flashes), and a walled board so nothing leaves the frame.
  *
  * Only @debuffjp/core. Each ball is one `draw.sprite` call; physics is plain arrays, no allocation per frame.
  */
 import { Game } from "@debuffjp/core";
 
 const SIZE = 480;
-const BALL_R = 3;
+const BALL_R = 2.5;
 const PEG_R = 2.5;
-const ROWS = 12;
-const ROW_GAP = 27;
+const ROWS = 13;
+const ROW_GAP = 26;
 const COL_GAP = 30;
-const TOP = 86;
-const BIN_TOP = TOP + ROWS * ROW_GAP + 14;
+const TOP = 70;
+const BIN_TOP = TOP + (ROWS - 1) * ROW_GAP + 18;
 const BINS = 16;
+const BIN_W = SIZE / BINS;
+const FLOOR = SIZE - 6;
 const GRAVITY = 520;
 const MAX = 250_000;
-const START = 400;
+const START = 300;
+/** Most balls added per frame, so the board fills gradually instead of jumping. */
+const MAX_SPAWN = 250;
 
 // The debuff palette, as 0xRRGGBBAA tints for a white ball sprite.
 const TINTS = [0xcffb2dff, 0x38bdf8ff, 0xf472b6ff, 0xfbbf24ff, 0xa78bfaff];
@@ -33,6 +40,7 @@ export interface Plinko {
 
 export function plinko(canvas: HTMLCanvasElement, options: { onStats?: (balls: number, fps: number, best: number) => void } = {}): Plinko {
   const game = new Game({ canvas, width: SIZE, height: SIZE, scale: "fit", background: INK, splash: false });
+  const rnd = () => game.random.next();
 
   // One small white disc, tinted per ball at draw time.
   const ballImage = document.createElement("canvas");
@@ -45,23 +53,17 @@ export function plinko(canvas: HTMLCanvasElement, options: { onStats?: (balls: n
     bctx.fill();
   }
   const ballScale = 0.5; // drawn at half size: crisp on high-DPI screens
+  // One reusable options object per colour: drawing a ball allocates nothing.
+  const looks = TINTS.map((t) => ({ scaleX: ballScale, scaleY: ballScale, tint: t }));
 
-  // Pegs on a staggered lattice; a ball only ever tests the few pegs near it.
-  const pegX: number[][] = [];
-  for (let r = 0; r < ROWS; r++) {
-    const row: number[] = [];
-    const n = 7 + r;
-    const offset = SIZE / 2 - ((n - 1) * COL_GAP) / 2;
-    for (let c = 0; c < n; c++) row.push(offset + c * COL_GAP);
-    pegX.push(row);
-  }
+  // A full-width staggered peg grid, like a real Galton board: every ball meets pegs all the way down.
+  const rowOffset = (r: number) => (r % 2 ? COL_GAP / 2 : 0) + (SIZE - Math.floor(SIZE / COL_GAP) * COL_GAP) / 2 + COL_GAP / 2;
+  const pegsPerRow = (r: number) => Math.floor((SIZE - rowOffset(r)) / COL_GAP) + 1;
 
   const x = new Float32Array(MAX);
   const y = new Float32Array(MAX);
   const vx = new Float32Array(MAX);
   const vy = new Float32Array(MAX);
-  // One reusable options object per colour: drawing a ball allocates nothing.
-  const looks = TINTS.map((t) => ({ scaleX: ballScale, scaleY: ballScale, tint: t }));
   const look = new Uint8Array(MAX);
   const bins = new Float64Array(BINS);
   let count = 0;
@@ -70,45 +72,53 @@ export function plinko(canvas: HTMLCanvasElement, options: { onStats?: (balls: n
   let rampTimer = 0;
   let statTimer = 0;
   let tintIndex = 0;
+  let dropAt = -1;
+  let dropLeft = 0;
 
   const spawn = (i: number, at = SIZE / 2) => {
-    x[i] = at + (game.random.next() - 0.5) * 24;
-    y[i] = 20 + game.random.next() * 30;
-    vx[i] = (game.random.next() - 0.5) * 30;
-    vy[i] = game.random.next() * 40;
+    x[i] = Math.min(SIZE - 20, Math.max(20, at + (rnd() - 0.5) * 30));
+    y[i] = 8 + rnd() * 24;
+    vx[i] = (rnd() - 0.5) * 30;
+    vy[i] = rnd() * 30;
     look[i] = tintIndex++ % TINTS.length;
   };
 
-  const burst = (at: number, n: number) => {
-    for (let k = 0; k < n && count < MAX; k++) spawn(count++, at);
-    target = Math.max(target, count);
-  };
-
+  // A click queues a drop that trickles in over a few frames (no burst flash).
   canvas.addEventListener("pointerdown", (e) => {
-    const p = game.toLogical(e.clientX, e.clientY);
-    burst(p.x, 400);
+    dropAt = game.toLogical(e.clientX, e.clientY).x;
+    dropLeft += 400;
   });
 
   game
     .add({
       id: "plinko",
       update(dt) {
-        // Grow while the device keeps up, back off when frames drop. `best` is the most held at full speed.
+        // Grow slowly while the device keeps up; ease off when frames drop. `best` = most held at full speed.
         rampTimer += dt;
-        if (rampTimer > 0.25) {
+        if (rampTimer > 0.5) {
           rampTimer = 0;
           const { fps, workP95Ms } = game.stats.summary();
           if (fps >= 57 && workP95Ms < 12) {
-            target = Math.min(MAX, Math.ceil(target * 1.12));
             best = Math.max(best, count);
+            target = Math.min(MAX, Math.ceil(target * 1.06) + 50);
           } else if (fps > 0 && fps < 50) {
-            target = Math.max(START, Math.floor(target * 0.9));
+            target = Math.max(START, Math.floor(target * 0.95));
           }
         }
-        while (count < target) spawn(count++);
-        if (count > target) count = target;
+        let spawned = 0;
+        while (dropLeft > 0 && count < MAX && spawned < MAX_SPAWN) {
+          spawn(count++, dropAt);
+          dropLeft--;
+          spawned++;
+        }
+        target = Math.max(target, count);
+        while (count < target && spawned < MAX_SPAWN) {
+          spawn(count++);
+          spawned++;
+        }
 
         const g = GRAVITY * dt;
+        const min = BALL_R + PEG_R;
         for (let i = 0; i < count; i++) {
           let bx = x[i] as number;
           let by = y[i] as number;
@@ -116,18 +126,16 @@ export function plinko(canvas: HTMLCanvasElement, options: { onStats?: (balls: n
           let bvy = (vy[i] as number) + g;
           bx += bvx * dt;
           by += bvy * dt;
-          // Nearest peg row, then the nearest peg in it.
+          // Nearest peg: nearest row, then nearest column in that row's stagger.
           const r = Math.round((by - TOP) / ROW_GAP);
-          const row = pegX[r];
-          if (row) {
+          if (r >= 0 && r < ROWS) {
             const py = TOP + r * ROW_GAP;
-            const first = row[0] as number;
-            const c = Math.max(0, Math.min(row.length - 1, Math.round((bx - first) / COL_GAP)));
-            const px = row[c] as number;
+            const off = rowOffset(r);
+            const c = Math.max(0, Math.min(pegsPerRow(r) - 1, Math.round((bx - off) / COL_GAP)));
+            const px = off + c * COL_GAP;
             const dx = bx - px;
             const dy = by - py;
             const d2 = dx * dx + dy * dy;
-            const min = BALL_R + PEG_R;
             if (d2 < min * min && d2 > 0.0001) {
               const d = Math.sqrt(d2);
               const nx = dx / d;
@@ -136,22 +144,32 @@ export function plinko(canvas: HTMLCanvasElement, options: { onStats?: (balls: n
               by = py + ny * min;
               const dot = bvx * nx + bvy * ny;
               if (dot < 0) {
-                bvx = (bvx - 1.5 * dot * nx) * 0.85 + (game.random.next() - 0.5) * 20;
+                bvx = (bvx - 1.5 * dot * nx) * 0.85 + (rnd() - 0.5) * 20;
                 bvy = (bvy - 1.5 * dot * ny) * 0.6;
               }
             }
           }
-          if (bx < BALL_R) {
-            bx = BALL_R;
+          // Walls keep everything inside the frame.
+          if (bx < BALL_R + 2) {
+            bx = BALL_R + 2;
             bvx = Math.abs(bvx) * 0.5;
-          } else if (bx > SIZE - BALL_R) {
-            bx = SIZE - BALL_R;
+          } else if (bx > SIZE - BALL_R - 2) {
+            bx = SIZE - BALL_R - 2;
             bvx = -Math.abs(bvx) * 0.5;
           }
-          if (by > BIN_TOP + 20) {
-            const b = Math.max(0, Math.min(BINS - 1, Math.floor((bx / SIZE) * BINS)));
+          if (by >= FLOOR) {
+            const b = Math.max(0, Math.min(BINS - 1, Math.floor(bx / BIN_W)));
             bins[b] = (bins[b] as number) + 1;
-            spawn(i);
+            if (count > target) {
+              // Easing off: let this ball leave through its bin instead of removing balls mid-air.
+              const last = --count;
+              x[i] = x[last] as number;
+              y[i] = y[last] as number;
+              vx[i] = vx[last] as number;
+              vy[i] = vy[last] as number;
+              look[i] = look[last] as number;
+              i--;
+            } else spawn(i);
             continue;
           }
           x[i] = bx;
@@ -171,22 +189,19 @@ export function plinko(canvas: HTMLCanvasElement, options: { onStats?: (balls: n
       render(draw) {
         let most = 1;
         for (let b = 0; b < BINS; b++) most = Math.max(most, bins[b] as number);
-        const bw = SIZE / BINS;
         for (let b = 0; b < BINS; b++) {
-          const h = ((bins[b] as number) / most) * (SIZE - BIN_TOP - 26);
-          draw.rect(b * bw + 2, SIZE - h, bw - 4, h, b % 2 ? "#cffb2d33" : "#cffb2d55");
+          const h = ((bins[b] as number) / most) * (SIZE - BIN_TOP - 8);
+          draw.rect(b * BIN_W + 2, SIZE - h, BIN_W - 4, h, "#cffb2d26");
         }
-        // Additive and translucent: where thousands overlap they glow, instead of flickering like static.
-        draw.blend("add");
-        // Fainter as the crowd grows, so overlap reads as a glow at any count, never a white-out.
-        draw.alpha = Math.min(0.6, Math.max(0.05, 2500 / Math.max(1, count)));
-        for (let i = 0; i < count; i++) {
-          draw.sprite(ballImage, x[i] as number, y[i] as number, looks[look[i] as number]);
-        }
+        for (let b = 1; b < BINS; b++) draw.rect(b * BIN_W - 1, BIN_TOP, 2, SIZE - BIN_TOP, "#e7fd9640");
+        // Fixed opacity, normal blending: dense areas fill in calmly, brightness never pulses.
+        draw.alpha = 0.85;
+        for (let i = 0; i < count; i++) draw.sprite(ballImage, x[i] as number, y[i] as number, looks[look[i] as number]);
         draw.alpha = 1;
-        draw.blend("normal");
-        // Pegs on top, so the board stays readable under any load.
-        for (let r = 0; r < ROWS; r++) for (const px of pegX[r] ?? []) draw.circle(px, TOP + r * ROW_GAP, PEG_R, "#e7fd96");
+        for (let r = 0; r < ROWS; r++) {
+          const off = rowOffset(r);
+          for (let c = 0; c < pegsPerRow(r); c++) draw.circle(off + c * COL_GAP, TOP + r * ROW_GAP, PEG_R, "#e7fd96");
+        }
       },
     })
     .go("plinko");
