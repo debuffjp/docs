@@ -39,8 +39,8 @@ debuff ships those parts as small, tree-shakeable packages built on web standard
 
 <ol class="steps">
 <li class="c-lime"><strong>Start</strong><CopyCommand cmd="npm create debuff@latest my-game" label="npm create debuff" /><span>A running game in under a minute, with a <a href="/docs/getting-started">starter or a platformer</a>.</span></li>
-<li class="c-sky"><strong>Build</strong><code>draw · input · assets · tilemap</code><span>Sprites, levels from <a href="/docs/tilemaps">Tiled and LDtk</a>, and an <a href="/docs/assets">asset pipeline</a> that ships only what you use.</span></li>
-<li class="c-pink"><strong>Tune</strong><code>game.params.define(…)</code><span>Feel values become <a href="/docs/params">live sliders</a> in the dev panel, with undo.</span></li>
+<li class="c-sky"><strong>Build</strong><span>Sprites, levels from <a href="/docs/tilemaps">Tiled and LDtk</a>, and an <a href="/docs/assets">asset pipeline</a> that ships only what you use.</span></li>
+<li class="c-pink"><strong>Tune</strong><span>Feel values become <a href="/docs/params">live sliders</a> in the dev panel, with undo.</span></li>
 <li class="c-amber"><strong>Verify</strong><CopyCommand cmd="npm test" /><span><a href="/docs/scenarios">Deterministic scenarios</a> drive your game in a real browser and compare screenshots.</span></li>
 <li class="c-violet"><strong>Ship</strong><CopyCommand cmd="npm run build" /><span>A size report that fails if dev code leaks. Web anywhere, or <a href="/docs/desktop">desktop with Tauri</a>.</span></li>
 </ol>
@@ -76,19 +76,6 @@ The plinko board on this page is a real debuff game, running right here. The [ex
 Agents are welcome and never required. With the [debuff MCP server](/docs/agents), an agent like Claude Code can play the game you have open, read its state and explained errors, tune params and verify its changes with scenarios. Every action it takes shows in your dev panel, where you can undo it.
 
 New projects ship an `AGENTS.md` with the commands and rules, so agents start with the right context. Creative calls stay with you: the tools are built for agents to propose and people to decide.
-
-</section>
-
-<section class="home-band">
-
-## Measured, not claimed
-
-<div class="stats">
-<div class="c-lime"><strong>~200,000</strong><span>sprites at 60 fps (<a href="/benchmarks">method</a>)</span></div>
-<div class="c-sky"><strong>~13 kB</strong><span>brotli for the starter game, everything included</span></div>
-<div class="c-pink"><strong>1.8 MB</strong><span>Windows installer for the starter via <a href="/docs/desktop">Tauri</a></span></div>
-<div class="c-amber"><strong>0</strong><span>telemetry in the toolkit or your games (<a href="/privacy">privacy</a>)</span></div>
-</div>
 
 </section>
 
@@ -165,29 +152,30 @@ New projects ship an `AGENTS.md` with the commands and rules, so agents start wi
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   counter-reset: step;
 }
-@media (min-width: 960px) {
-  .steps { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (min-width: 768px) {
+  .steps { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .steps li { grid-column: span 2; }
+  .steps li:nth-child(n + 4) { grid-column: span 3; }
 }
-.steps li > code { overflow-wrap: anywhere; white-space: normal; }
 .steps li {
+  margin: 0 !important;
   counter-increment: step;
   padding: 16px;
   border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
   background: var(--vp-c-bg-soft);
   display: grid;
-  gap: 8px;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: 10px;
+  min-width: 0;
 }
 .steps li strong::before {
   content: counter(step) " ";
   color: var(--accent, var(--vp-c-brand-1));
   font-family: var(--vp-font-family-mono);
 }
-.steps li > code {
-  font-size: 12px;
-  width: fit-content;
-}
-.steps .cmd { width: 100%; }
+.steps .cmd { width: 100%; min-width: 0; }
 .steps span {
   color: var(--vp-c-text-2);
   font-size: 14px;
@@ -224,26 +212,6 @@ New projects ship an `AGENTS.md` with the commands and rules, so agents start wi
 }
 .card strong { color: var(--vp-c-text-1); font-size: 16px; }
 .card span { color: var(--vp-c-text-2); font-size: 14px; line-height: 1.6; }
-.stats {
-  display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-}
-.stats div {
-  padding: 18px;
-  border-radius: 12px;
-  background: var(--vp-c-bg-soft);
-  display: grid;
-  gap: 4px;
-}
-.stats strong {
-  font-family: var(--vp-font-family-display);
-  font-size: 32px;
-  font-weight: 800;
-  color: var(--accent, var(--vp-c-brand-1));
-}
-
-.stats span { color: var(--vp-c-text-2); font-size: 14px; }
 .home-final { text-align: left; }
 .home-final h2 { font-size: 36px; }
 .final-links {
