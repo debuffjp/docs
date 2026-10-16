@@ -1,0 +1,20 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPointStrategy": "packages",
+  "entryPoints": [
+    "../debuff/packages/core",
+    "../debuff/packages/input",
+    "../debuff/packages/assets",
+    "../debuff/packages/audio",
+    "../debuff/packages/juice",
+    "../debuff/packages/dev"
+  ],
+  "packageOptions": { "entryPoints": ["src/index.ts"], "tsconfig": "tsconfig.json" },
+  "out": "api",
+  "plugin": ["typedoc-plugin-markdown", "typedoc-vitepress-theme"],
+  "readme": "none",
+  "excludePrivate": true,
+  "excludeInternal": true,
+  "hideGenerator": true,
+  "githubPages": false
+}
