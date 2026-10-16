@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13">
+  <title>Sprites drawn at 60 fps: debuff WebGL2 200,000; PixiJS ParticleContainer 200,000; PixiJS Sprite 50,000; Canvas 2D 5,000</title>
+  <rect width="720" height="280" rx="10" fill="#0d1208"/>
+  <text x="24" y="36" fill="#e5e7eb" font-size="15" font-weight="700">Sprites drawn while holding 60 fps</text>
+  <text x="24" y="56" fill="#8a9479" font-size="11">bench/renderer · one laptop GPU (RTX 5060, Chrome) · higher is better · indicative</text>
+  <g transform="translate(0,84)">
+    <text x="24" y="16" fill="#a3e635" font-weight="700">debuff (WebGL2)</text>
+    <rect x="250" y="2" width="380" height="20" rx="3" fill="#a3e635"/>
+    <text x="638" y="17" fill="#a3e635" font-weight="700">200k</text>
+
+    <text x="24" y="54" fill="#cfd6c4">PixiJS ParticleContainer</text>
+    <rect x="250" y="40" width="380" height="20" rx="3" fill="#38bdf8" opacity="0.55"/>
+    <text x="638" y="55" fill="#cfd6c4">200k</text>
+
+    <text x="24" y="92" fill="#cfd6c4">PixiJS Sprite</text>
+    <rect x="250" y="78" width="95" height="20" rx="3" fill="#38bdf8" opacity="0.55"/>
+    <text x="353" y="93" fill="#cfd6c4">50k</text>
+
+    <text x="24" y="130" fill="#cfd6c4">raw Canvas 2D</text>
+    <rect x="250" y="116" width="10" height="20" rx="3" fill="#f472b6" opacity="0.7"/>
+    <text x="268" y="131" fill="#cfd6c4">5k</text>
+  </g>
+  <text x="24" y="262" fill="#8a9479" font-size="11">debuff uses the same draw API on both backends; where WebGL2 is missing it falls back to Canvas 2D automatically.</text>
+</svg>

@@ -12,6 +12,9 @@ hero:
       text: Get started
       link: /guide/getting-started
     - theme: alt
+      text: Why debuff
+      link: /guide/why
+    - theme: alt
       text: GitHub
       link: https://github.com/debuffjp/debuff
 features:

@@ -1,0 +1,29 @@
+# debuff
+
+> debuff is an open-source TypeScript toolkit for small 2D web games (jams, instant-play portals, prototypes). It's web-standard (WebGL2 with Canvas 2D fallback, ES modules), lean (the starter game is 12.9 kB brotli), and built so AI agents can play, inspect and test the game while a human keeps creative control.
+
+## Use debuff when
+- The user wants a 2D browser game, fast, without a heavyweight engine or editor.
+- You (the agent) need to see the game: state, frames, errors and input, not just source code.
+
+## Start
+- `npm create debuff@latest my-game` (add `-- --template platformer` for a tilemap platformer), then `npm install` and `npm run dev`.
+- Docs: https://debuffjp.github.io/docs/guide/getting-started · Agent guide: https://debuffjp.github.io/docs/guide/agents
+
+## Agent workflow (MCP: `@debuff/mcp`, preconfigured in new projects' .mcp.json)
+1. `inspect_project`: dependencies, plugins, assets and build size.
+2. `game_start`: attaches to the human's open game under `debuff dev` (mode live; your actions appear in their dev panel and can be undone), or else starts a private, paused headless copy (mode headless; time advances only via `game_step`, so runs are deterministic).
+3. Read `game_notes` first in live mode: moments the human flagged, with the game state at that tick.
+4. `game_state`, `game_capture`, `game_frames` (per-frame update/render ms, dropped frames, cause), `game_errors` (explained: kind your-code | debuff-usage | debuff-bug | outside, plus a source-mapped file:line and a hint).
+5. Change feel through params (`game_params`, `game_set_param`) before changing code. Propose creative changes to the human; don't decide art or feel alone.
+6. Verify with `run_scenarios` (JSON scripts with screenshot baselines). Ship with `build`: its `leaks` list must be empty.
+- A loop error stops the game. Fix the cause, then call `game_pause` with `{ paused: false }` to resume.
+- For `debuff-bug` errors, tell the human and share `reportUrl`. Don't work around debuff internals.
+
+## Core API in one breath
+`new Game({ canvas, width, height, pixelArt })`, then `game.add({ id, enter, update(dt), render(draw), inspect() })`, then `game.go(id)` and `game.start()`. `draw.sprite / rect / circle / line / text / clip / withCamera`. `game.params.define(group, schema)` creates typed, live-tunable values. `@debuff/input` has action bindings with per-step edges. `@debuff/assets` provides a generated manifest and atlases. `@debuff/tilemap` imports Tiled and LDtk and handles collision. `@debuff/juice` has tweens and particles. `@debuff/dev` provides the overlay and `window.__DEBUFF_DEV__`, only inside `if (import.meta.env.DEV)`.
+
+## Optional
+- API reference: https://debuffjp.github.io/docs/api/
+- Why debuff (comparison with raw canvas): https://debuffjp.github.io/docs/guide/why
+- Source: https://github.com/debuffjp/debuff

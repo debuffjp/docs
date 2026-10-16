@@ -36,6 +36,7 @@ export default defineConfig({
         {
           text: "Start",
           items: [
+            { text: "Why debuff", link: "/guide/why" },
             { text: "Getting started", link: "/guide/getting-started" },
             { text: "Core concepts", link: "/guide/concepts" },
             { text: "Without a build step", link: "/guide/no-build" },
