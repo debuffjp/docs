@@ -24,6 +24,7 @@ render(draw) {
 | `text(string, x, y, options?)` | Cached, crisp text. Options: `font`, `color`, `align`, `baseline`, `alpha` |
 | `push()` / `pop()`, `translate`, `scale`, `rotate` | Transform stack |
 | `withCamera(camera, fn)` | Run `fn` in the camera's view |
+| `clip(x, y, w, h, fn)` | Draw only inside a rectangle (UI panels, lists, minimaps); nests |
 | `alpha`, `blend("normal" \| "add")` | Global alpha and blend mode |
 | `raw` | `{ kind: "webgl2", gl }` or `{ kind: "2d", ctx }` escape hatch |
 
