@@ -16,7 +16,7 @@ hero:
       link: https://github.com/debuffjp/debuff
 features:
   - title: Web-standard
-    details: Canvas, Pointer Events, Gamepad, Web Audio, ES modules. No proprietary runtime, editor or project format.
+    details: WebGL2 with Canvas 2D fallback, Pointer Events, Gamepad, Web Audio, ES modules. No proprietary runtime, editor or project format.
   - title: Lean and fast
     details: Tree-shakeable packages. Every build reports its size, and dev tooling can't leak into what players download.
   - title: Agent-ready, human-led

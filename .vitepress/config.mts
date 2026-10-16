@@ -37,6 +37,7 @@ export default defineConfig({
         {
           text: "Making games",
           items: [
+            { text: "Drawing", link: "/guide/drawing" },
             { text: "Input", link: "/guide/input" },
             { text: "Assets", link: "/guide/assets" },
             { text: "Tunable params", link: "/guide/params" },

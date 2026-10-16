@@ -28,7 +28,7 @@ game
     id: "play",
     enter() {},
     update(dt) {}, // fixed step, seconds
-    render(ctx, alpha) {}, // alpha: interpolation between steps
+    render(draw, alpha) {}, // draw in logical units; alpha interpolates between steps
     exit() {},
     inspect: () => ({ score }), // JSON for tools and tests
   })
