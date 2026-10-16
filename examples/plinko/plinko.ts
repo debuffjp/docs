@@ -3,7 +3,8 @@
  * keeps adding balls while it holds 60 fps, so the counter shows how many sprites debuff draws on this
  * device. Click or tap to drop more where you point.
  *
- * Built to be calm to watch: fixed opacity and normal blending (brightness never pulses with the count),
+ * Built to be calm to watch: one soft colour at low, fixed opacity (no strobing confetti, brightness never
+ * pulses with the count),
  * balls added and removed gradually (no sudden flashes), and a walled board so nothing leaves the frame.
  *
  * Only @debuffjp/core. Each ball is one `draw.sprite` call; physics is plain arrays, no allocation per frame.
@@ -27,8 +28,11 @@ const START = 300;
 /** Most balls added per frame, so the board fills gradually instead of jumping. */
 const MAX_SPAWN = 250;
 
-// The debuff palette, as 0xRRGGBBAA tints for a white ball sprite.
-const TINTS = [0xcffb2dff, 0x38bdf8ff, 0xf472b6ff, 0xfbbf24ff, 0xa78bfaff];
+// One hue. Many saturated colours churning in a dense field read as strobing static; a single soft
+// lime at low opacity lets density build into a steady glow instead.
+const TINTS = [0xcffb2dff];
+/** Per-ball opacity: low enough that one moving ball barely registers against the board. */
+const BALL_ALPHA = 0.3;
 const INK = "#0d1208";
 
 export interface Plinko {
@@ -195,12 +199,19 @@ export function plinko(canvas: HTMLCanvasElement, options: { onStats?: (balls: n
         }
         for (let b = 1; b < BINS; b++) draw.rect(b * BIN_W - 1, BIN_TOP, 2, SIZE - BIN_TOP, "#e7fd9640");
         // Fixed opacity, normal blending: dense areas fill in calmly, brightness never pulses.
-        draw.alpha = 0.85;
+        draw.alpha = BALL_ALPHA;
         for (let i = 0; i < count; i++) draw.sprite(ballImage, x[i] as number, y[i] as number, looks[look[i] as number]);
         draw.alpha = 1;
         for (let r = 0; r < ROWS; r++) {
           const off = rowOffset(r);
-          for (let c = 0; c < pegsPerRow(r); c++) draw.circle(off + c * COL_GAP, TOP + r * ROW_GAP, PEG_R, "#e7fd96");
+          for (let c = 0; c < pegsPerRow(r); c++) {
+            // A light ring with a dark core: visible on the empty board and against a dense crowd alike,
+            // so pegs never seem to blink as balls stream past.
+            const px = off + c * COL_GAP;
+            const py = TOP + r * ROW_GAP;
+            draw.circle(px, py, PEG_R + 1, "#e7fd96");
+            draw.circle(px, py, PEG_R - 0.5, INK);
+          }
         }
       },
     })
