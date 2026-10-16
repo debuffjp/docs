@@ -37,3 +37,21 @@
 .vp-doc h3 { font-weight: 600; }
 /* The nav shows the outlined lockup instead of logo + text. */
 .VPNavBarTitle .logo { height: 26px; }
+
+/* Lime is light: anything filled with it takes dark ink text (white on lime fails contrast). */
+:root {
+  --vp-button-brand-text: #11140d;
+  --vp-button-brand-hover-text: #11140d;
+  --vp-button-brand-active-text: #11140d;
+  --vp-button-brand-bg: #cffb2d;
+  --vp-button-brand-hover-bg: #ddfc6c;
+  --vp-button-brand-active-bg: #b0d526;
+  --vp-button-brand-border: transparent;
+  --vp-button-brand-hover-border: transparent;
+  --vp-button-brand-active-border: transparent;
+}
+.dark {
+  --vp-button-brand-text: #11140d;
+  --vp-button-brand-hover-text: #11140d;
+  --vp-button-brand-active-text: #11140d;
+}

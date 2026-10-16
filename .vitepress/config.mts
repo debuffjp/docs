@@ -9,7 +9,7 @@ const apiSidebar = existsSync(apiSidebarFile) ? JSON.parse(readFileSync(apiSideb
 const base = process.env.SITE_BASE ?? "/";
 // Where the site lives, for absolute links in social cards.
 const origin = process.env.SITE_ORIGIN ?? "https://debuff.jp";
-const FORUMS = "https://forums.debuff.jp";
+// Forums (forums.debuff.jp) are hidden while they are a work in progress.
 
 export default defineConfig({
   title: "debuff",
@@ -35,7 +35,6 @@ export default defineConfig({
       { text: "Guide", link: "/guide/getting-started" },
       { text: "API", link: "/api/" },
       { text: "Why debuff", link: "/guide/why" },
-      { text: "Forums", link: FORUMS },
       { text: "Roadmap", link: "https://github.com/debuffjp/debuff/blob/main/docs/roadmap.md" },
     ],
     sidebar: {
@@ -72,10 +71,9 @@ export default defineConfig({
     },
     socialLinks: [
       { icon: "github", link: "https://github.com/debuffjp/debuff" },
-      { icon: { svg: '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm3 5v2h10V9H7zm0 4v2h7v-2H7z"/></svg>' }, link: FORUMS, ariaLabel: "Forums" },
     ],
     editLink: { pattern: "https://github.com/debuffjp/docs/edit/main/:path", text: "Edit this page" },
     search: { provider: "local" },
-    footer: { message: `MIT licensed · <a href="${FORUMS}">forums</a> · <a href="https://github.com/debuffjp/debuff">GitHub</a>`, copyright: "debuff contributors" },
+    footer: { message: `MIT licensed · <a href="https://github.com/debuffjp/debuff">GitHub</a>`, copyright: "debuff contributors" },
   },
 });
