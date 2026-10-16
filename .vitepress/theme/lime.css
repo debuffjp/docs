@@ -1,16 +1,16 @@
 /* debuff brand: lime. */
 :root {
   --vp-c-brand-1: #4d7c0f;
-  --vp-c-brand-2: #65a30d;
-  --vp-c-brand-3: #84cc16;
+  --vp-c-brand-2: #87a31d;
+  --vp-c-brand-3: #b0d526;
   --vp-c-brand-soft: rgba(132, 204, 22, 0.16);
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: linear-gradient(120deg, #84cc16 20%, #a3e635);
+  --vp-home-hero-name-background: linear-gradient(120deg, #b0d526 20%, #cffb2d);
 }
 .dark {
-  --vp-c-brand-1: #a3e635;
-  --vp-c-brand-2: #bef264;
-  --vp-c-brand-3: #84cc16;
+  --vp-c-brand-1: #cffb2d;
+  --vp-c-brand-2: #ddfc6c;
+  --vp-c-brand-3: #b0d526;
   --vp-c-bg: #0d0f0a;
   --vp-c-bg-alt: #11140d;
   --vp-c-bg-soft: #161b10;

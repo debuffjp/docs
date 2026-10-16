@@ -4,9 +4,9 @@
   <text x="24" y="36" fill="#e5e7eb" font-size="15" font-weight="700">Sprites drawn while holding 60 fps</text>
   <text x="24" y="56" fill="#8a9479" font-size="11">bench/renderer · one laptop GPU (RTX 5060, Chrome) · higher is better · indicative</text>
   <g transform="translate(0,84)">
-    <text x="24" y="16" fill="#a3e635" font-weight="700">debuff (WebGL2)</text>
-    <rect x="250" y="2" width="380" height="20" rx="3" fill="#a3e635"/>
-    <text x="638" y="17" fill="#a3e635" font-weight="700">200k</text>
+    <text x="24" y="16" fill="#cffb2d" font-weight="700">debuff (WebGL2)</text>
+    <rect x="250" y="2" width="380" height="20" rx="3" fill="#cffb2d"/>
+    <text x="638" y="17" fill="#cffb2d" font-weight="700">200k</text>
 
     <text x="24" y="54" fill="#cfd6c4">PixiJS ParticleContainer</text>
     <rect x="250" y="40" width="380" height="20" rx="3" fill="#38bdf8" opacity="0.55"/>

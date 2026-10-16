@@ -9,7 +9,7 @@ render(draw) {
     draw.rect(0, groundY, 320, 8, "#2f3a1f");
     particles.draw(draw);
   });
-  draw.text(`score ${score}`, 4, 4, { font: "8px monospace", color: "#a3e635" });
+  draw.text(`score ${score}`, 4, 4, { font: "8px monospace", color: "#cffb2d" });
 }
 ```
 
@@ -28,7 +28,7 @@ render(draw) {
 | `alpha`, `blend("normal" \| "add")` | Global alpha and blend mode |
 | `raw` | `{ kind: "webgl2", gl }` or `{ kind: "2d", ctx }` escape hatch |
 
-Colours are hex strings (`"#a3e635"`, `"#a3e63580"`), any CSS colour, or numbers `0xRRGGBBAA`.
+Colours are hex strings (`"#cffb2d"`, `"#cffb2d80"`), any CSS colour, or numbers `0xRRGGBBAA`.
 
 ## Why it's fast
 

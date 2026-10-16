@@ -19,7 +19,7 @@ export default defineConfig({
   lastUpdated: true,
   appearance: "dark",
   head: [
-    ["meta", { name: "theme-color", content: "#a3e635" }],
+    ["meta", { name: "theme-color", content: "#cffb2d" }],
     ["link", { rel: "icon", href: `${base}favicon.svg` }],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:title", content: "debuff · more room for play." }],
