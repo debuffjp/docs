@@ -12,16 +12,21 @@ Folders become **preload groups**, so you can load a level's assets when you nee
 
 ```ts
 import { Assets } from "@debuff/assets";
-import { Sprite, sliceGrid } from "@debuff/core";
+import { Sprite } from "@debuff/core";
 
 const assets = new Assets(await (await fetch("assets/manifest.json")).json());
 await assets.load("default", ({ loaded, total }) => bar(loaded / total));
 
-const { grid } = assets.entry("hero");
-const hero = new Sprite({
-  frames: sliceGrid(assets.image("hero"), grid!.frameWidth, grid!.frameHeight),
-  animations: { run: { frames: [0, 1, 2, 3], fps: 12 } },
-});
+const hero = new Sprite({ frames: assets.frames("hero"), animations: { run: { frames: [0, 1, 2, 3], fps: 12 } } });
+draw.sprite(assets.frame("coin"), x, y); // any image, wherever it lives
+```
+
+## Atlases, automatically
+
+At build time (and in dev), the PNGs in each preload group are packed into one texture atlas. Players download one file instead of dozens, and the renderer binds fewer textures. Packing is lossless and padded against edge bleeding, and `frame()` / `frames()` work the same either way. Images over half the atlas size (backgrounds) stay standalone. Tune or disable it in `debuff.config.ts`:
+
+```ts
+export default defineConfig({ assets: { atlas: { maxSize: 2048, padding: 2, exclude: ["ui/"] } } }); // or atlas: false
 ```
 
 `npx debuff assets` lists every asset, which importer produced it, its size, and anything that looks unused.
