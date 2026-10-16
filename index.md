@@ -6,7 +6,7 @@ description: "debuff is an open-source toolkit that handles the basics of 2D bro
 hero:
   name: debuff
   text: more room for play.
-  tagline: debuff handles the basics of 2D browser games, from the game loop to shipping, so your time goes on the world, the feel and the idea that made you want to build it.
+  tagline: debuff handles the basics of 2D browser games, from the game loop to shipping, so you can concentrate on the fun creative bits.
   actions:
     - theme: brand
       text: Build your first game
