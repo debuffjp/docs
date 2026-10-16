@@ -39,6 +39,8 @@ export interface Plinko {
   /** Start or resume the simulation. */
   play(): void;
   pause(): void;
+  /** Advance `steps` fixed steps without the loop (a still preview frame before playing). */
+  still(steps: number): void;
   dispose(): void;
 }
 
@@ -220,6 +222,7 @@ export function plinko(canvas: HTMLCanvasElement, options: { onStats?: (balls: n
   return {
     play: () => game.start(),
     pause: () => game.stop(),
+    still: (steps) => game.step(steps),
     dispose: () => game.dispose(),
   };
 }

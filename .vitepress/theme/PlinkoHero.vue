@@ -7,7 +7,9 @@ const frame = ref<HTMLElement>();
 const balls = ref(0);
 const fps = ref(0);
 const best = ref(0);
-const waiting = ref(false);
+/** Opt-in: nothing moves until the visitor presses play (many fast particles). */
+const playing = ref(false);
+const started = ref(false);
 const failed = ref(false);
 let game: Plinko | undefined;
 let observer: IntersectionObserver | undefined;
@@ -16,9 +18,17 @@ let stopSync: (() => void) | undefined;
 
 const fmt = (n: number) => n.toLocaleString("en-US");
 
-function start() {
-  waiting.value = false;
-  if (visible) game?.play();
+// Run only while playing, on screen and in a visible tab.
+function sync() {
+  if (document.hidden) return;
+  if (playing.value && visible) game?.play();
+  else game?.pause();
+}
+
+function toggle() {
+  playing.value = !playing.value;
+  started.value = true;
+  sync();
 }
 
 onMounted(async () => {
@@ -33,18 +43,12 @@ onMounted(async () => {
         best.value = top;
       },
     });
+    // A still preview: two seconds of simulation, stepped once, so the board isn't empty.
+    game.still(120);
   } catch {
     failed.value = true;
     return;
   }
-  waiting.value = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  // Only run while on screen. A hidden page is debuff's job (it pauses itself), so ignore it here and
-  // resume when the page shows again, or the board could stay paused.
-  const sync = () => {
-    if (document.hidden) return;
-    if (visible && !waiting.value) game?.play();
-    else game?.pause();
-  };
   observer = new IntersectionObserver(([entry]) => {
     visible = !!entry?.isIntersecting;
     sync();
@@ -64,15 +68,29 @@ onBeforeUnmount(() => {
 <template>
   <figure class="plinko" ref="frame">
     <div class="board">
-      <canvas ref="canvas" aria-label="plinko: balls falling through pegs, drawn by debuff. Click to drop more." />
-      <button v-if="waiting" class="play" type="button" @click="start">Play the demo</button>
+      <canvas ref="canvas" aria-label="plinko: balls falling through pegs, drawn by debuff. Click the board to drop more." />
+      <button v-if="!started && !failed" class="play" type="button" @click="toggle">
+        Play the demo
+        <small>fast-moving particles</small>
+      </button>
+      <button
+        v-else-if="!failed"
+        class="toggle"
+        type="button"
+        :aria-label="playing ? 'Pause the demo' : 'Play the demo'"
+        :title="playing ? 'Pause' : 'Play'"
+        @click.stop="toggle"
+      >
+        <svg v-if="playing" viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="2" width="3.5" height="12" rx="1" /><rect x="9.5" y="2" width="3.5" height="12" rx="1" /></svg>
+        <svg v-else viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11a1 1 0 0 0 1.5.86l9-5.5a1 1 0 0 0 0-1.72l-9-5.5A1 1 0 0 0 4 2.5z" /></svg>
+      </button>
       <p v-if="failed" class="fallback">The demo needs WebGL2 or Canvas 2D, and couldn't start here.</p>
     </div>
     <figcaption>
       <span class="count"><strong>{{ fmt(balls) }}</strong> sprites</span>
-      <span>{{ fps }} fps</span>
-      <span v-if="best" class="best">{{ fmt(best) }} held at 60 fps</span>
-      <span class="hint">click to drop more ·
+      <span v-if="playing">{{ fps }} fps</span>
+      <span v-if="best && started" class="best">{{ fmt(best) }} held at 60 fps</span>
+      <span class="hint">click the board to drop more ·
         <a href="https://github.com/debuffjp/docs/blob/main/examples/plinko/plinko.ts">source</a></span>
     </figcaption>
   </figure>
@@ -100,14 +118,46 @@ onBeforeUnmount(() => {
 }
 .play {
   position: absolute;
-  inset: auto 0 45% 0;
+  inset: 0;
   margin: auto;
   width: fit-content;
-  padding: 8px 16px;
+  height: fit-content;
+  display: grid;
+  gap: 2px;
+  padding: 10px 20px;
   border-radius: 999px;
   background: #cffb2d;
   color: #11140d;
   font-weight: 600;
+  box-shadow: 0 6px 24px #0008;
+}
+.play small {
+  font-weight: 400;
+  font-size: 11px;
+  opacity: 0.75;
+}
+.toggle {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #11140dcc;
+  border: 1px solid #cffb2d66;
+  color: #cffb2d;
+}
+.toggle svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+.toggle:focus-visible,
+.play:focus-visible {
+  outline: 2px solid #e7fd96;
+  outline-offset: 2px;
 }
 .fallback {
   position: absolute;
