@@ -44,8 +44,9 @@ export default defineConfig({
   appearance: "dark",
   head: [
     ["meta", { name: "theme-color", content: "#cffb2d" }],
-    // Search engine ownership verification (Google Search Console).
+    // Search engine ownership verification (Google Search Console, Bing Webmaster Tools).
     ["meta", { name: "google-site-verification", content: "EICOKV4M-kvzgj0yUEuEGQOEvV4H8KFLcy2H_49CmNw" }],
+    ["meta", { name: "msvalidate.01", content: "8D3524238E187A30C4AFA9F534804EF5" }],
     ["link", { rel: "icon", href: `${base}favicon.svg` }],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:image", content: `${origin}/social-card.png` }],
@@ -116,6 +117,6 @@ export default defineConfig({
     ],
     editLink: { pattern: "https://github.com/debuffjp/docs/edit/main/:path", text: "Edit this page" },
     search: { provider: "local" },
-    footer: { message: `MIT licensed · <a href="https://github.com/debuffjp/debuff">GitHub</a>`, copyright: "debuff contributors" },
+    footer: { message: `MIT licensed · <a href="https://github.com/debuffjp/debuff">GitHub</a> · <a href="${base}privacy">Privacy</a>`, copyright: "debuff contributors" },
   },
 });
