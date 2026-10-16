@@ -2,11 +2,11 @@
 layout: home
 title: debuff, a 2D web game toolkit
 titleTemplate: false
-description: "debuff is an open-source toolkit for small, fast 2D browser games: batched WebGL2, explained errors, live tuning, and coding agents that can play your game."
+description: "debuff is an open-source toolkit that handles the basics of 2D browser games, so you can spend your time on the game you imagined."
 hero:
   name: debuff
   text: more room for play.
-  tagline: Small, fast 2D games for the browser, minus the plumbing. A 13 kB starter, 200,000 sprites at 60 fps, and dev tools that tell you exactly what broke.
+  tagline: debuff handles the basics of 2D browser games, from the game loop to shipping, so your time goes on the world, the feel and the idea that made you want to build it.
   actions:
     - theme: brand
       text: Build your first game
@@ -25,11 +25,11 @@ hero:
 
 <p class="eyebrow">Open-source toolkit for 2D web games · 0.1, early development</p>
 
-## Every web game rebuilds the same plumbing
+## Spend your time on the game, not the groundwork
 
-A canvas and some JavaScript gets you a square on screen. Then come the fixed-step loop, crisp scaling on every screen, input that doesn't miss taps, audio that actually starts, an asset pipeline, sprite batching, and a way to find out why the frame rate just dropped. That's days of work before the idea you started with gets any attention.
+Every game starts as an idea: a world to explore, a jump that feels just right, a story only you would tell. Then the groundwork arrives. You need a game loop, crisp pixels on every screen, controls that respond, sound that plays, levels, assets, and a way to find out why something broke. That can take days before the idea gets any attention.
 
-debuff ships those parts as small, tree-shakeable packages built on web standards, so the first hour goes on your game.
+debuff takes care of the groundwork, so your first hour, and every one after it, goes on your game.
 
 </section>
 
@@ -49,10 +49,10 @@ debuff ships those parts as small, tree-shakeable packages built on web standard
 
 <section class="home-band">
 
-## What you get
+## What debuff takes off your plate
 
 <div class="cards">
-<a class="card c-lime" href="/benchmarks"><strong>A fast, small runtime</strong><span>Batched WebGL2 with a Canvas 2D fallback. About 200,000 sprites at 60 fps on our benchmark machine; the starter ships at about 13 kB brotli.</span></a>
+<a class="card c-lime" href="/benchmarks"><strong>Room to grow</strong><span>Batched WebGL2 with a Canvas 2D fallback. About 200,000 sprites at 60 fps on our benchmark machine; the starter ships at about 13 kB brotli.</span></a>
 <a class="card c-pink" href="/docs/why"><strong>Errors that explain themselves</strong><span>A crash stops the game cleanly and says whose bug it is (your code, a rejected call, or debuff), with the exact source line and a hint.</span></a>
 <a class="card c-sky" href="/docs/why#know-where-every-frame-goes"><strong>Dev panel that answers "why?"</strong><span>Pause, step, slow motion, live game state, and dropped frames attributed to your code or to something outside it.</span></a>
 <a class="card c-amber" href="/docs/scenarios"><strong>Tests you can trust</strong><span>Same inputs, same game: scenarios replay exactly, so a bug comes with a reproduction instead of "works on my machine".</span></a>
@@ -65,7 +65,7 @@ debuff ships those parts as small, tree-shakeable packages built on web standard
 
 ## Play before you read
 
-The plinko board on this page is a real debuff game, running right here. The [examples](/examples) include it and a tilemap platformer you can play, each with its source and the docs behind it.
+The plinko board on this page is a real debuff game, running right here. The [examples](/examples) include it, a tilemap platformer and mossfell, a top-down adventure, all playable, each with its source and the docs behind it.
 
 </section>
 

@@ -1,5 +1,5 @@
 ---
-description: "Playable debuff examples with source: a plinko sprite stress test and a tilemap platformer, each linked to the docs behind it."
+description: "Playable debuff examples with source: a plinko sprite stress test, a tilemap platformer and mossfell, a top-down adventure, each linked to the docs behind it."
 ---
 
 # Examples
@@ -32,6 +32,22 @@ npm create debuff@latest my-game -- --template platformer
 ```
 
 - **Docs:** [Tilemaps and collision](/docs/tilemaps) · [Input](/docs/input) · [Assets](/docs/assets) · [Tunable params](/docs/params)
+
+## Mossfell
+
+<PlayEmbed src="/play/mossfell/" title="mossfell" ratio="4 / 3" />
+
+A wanderer crosses the fell, screen by screen, to find the mossheart in the hollow below. Swing a blade at slimes, moths and thornbulbs, find the key, open the door and face the warden. Moss and plum instead of lime: debuff doesn't come with a look of its own.
+
+- **Controls:** arrow keys or WASD to move, Z, Space or J to swing. A gamepad works too.
+- **Shows:** screen-by-screen scrolling over one Tiled map, a small dungeon behind stairs, sword hitboxes and knockback, hearts and invulnerability frames, enemies that respawn per screen, and synthesized sound effects.
+- **Source:** [templates/mossfell](https://github.com/debuffjp/debuff/tree/main/templates/mossfell). Start your own copy with:
+
+```bash
+npm create debuff@latest my-game -- --template github:debuffjp/debuff/templates/mossfell
+```
+
+- **Docs:** [Tilemaps and collision](/docs/tilemaps) · [Scenarios](/docs/scenarios) · [Tunable params](/docs/params)
 
 ## Make your own
 

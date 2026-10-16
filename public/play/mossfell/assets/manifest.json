@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "assets": {
+    "sprites": {
+      "type": "image",
+      "src": "assets/_atlas/default-0.png",
+      "grid": {
+        "frameWidth": 16,
+        "frameHeight": 16
+      },
+      "bytes": 1524,
+      "hash": "86c86ed0c353",
+      "rect": {
+        "x": 1,
+        "y": 1,
+        "w": 416,
+        "h": 16
+      }
+    },
+    "tiles": {
+      "type": "image",
+      "src": "assets/_atlas/default-0.png",
+      "grid": {
+        "frameWidth": 16,
+        "frameHeight": 16
+      },
+      "bytes": 1048,
+      "hash": "86c86ed0c353",
+      "rect": {
+        "x": 419,
+        "y": 1,
+        "w": 160,
+        "h": 16
+      }
+    },
+    "world": {
+      "type": "json",
+      "src": "assets/world.tmj",
+      "bytes": 6785,
+      "hash": "a9600f55a961"
+    }
+  }
+}
