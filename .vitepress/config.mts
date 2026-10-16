@@ -121,6 +121,6 @@ export default defineConfig({
     ],
     editLink: { pattern: "https://github.com/debuffjp/docs/edit/main/:path", text: "Edit this page" },
     search: { provider: "local" },
-    footer: { message: `MIT licensed · <a href="https://github.com/debuffjp/debuff">GitHub</a> · <a href="${base}privacy">Privacy</a>`, copyright: "debuff contributors" },
+    footer: { message: `MIT licensed · <a href="https://github.com/debuffjp/debuff">GitHub</a> · <a href="${base}privacy">Privacy</a>` },
   },
 });

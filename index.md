@@ -170,7 +170,6 @@ New projects ship an `AGENTS.md` with the commands and rules, so agents start wi
 }
 .steps li > code { overflow-wrap: anywhere; white-space: normal; }
 .steps li {
-  border-top: 3px solid var(--accent, var(--vp-c-divider)) !important;
   counter-increment: step;
   padding: 16px;
   border: 1px solid var(--vp-c-divider);
@@ -212,8 +211,7 @@ New projects ship an `AGENTS.md` with the commands and rules, so agents start wi
   text-decoration: none !important;
   transition: border-color 0.2s;
 }
-.card { border-top: 3px solid var(--accent, var(--vp-c-divider)) !important; }
-.card:hover { border-color: var(--accent, var(--vp-c-brand-1)); }
+.card:hover { border-color: var(--vp-c-text-3); }
 .card strong::before {
   content: "";
   display: inline-block;
@@ -244,7 +242,7 @@ New projects ship an `AGENTS.md` with the commands and rules, so agents start wi
   font-weight: 800;
   color: var(--accent, var(--vp-c-brand-1));
 }
-.stats div { border-left: 3px solid var(--accent, transparent); }
+
 .stats span { color: var(--vp-c-text-2); font-size: 14px; }
 .home-final { text-align: left; }
 .home-final h2 { font-size: 36px; }
