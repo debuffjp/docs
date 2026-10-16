@@ -55,3 +55,20 @@
   --vp-button-brand-hover-text: #11140d;
   --vp-button-brand-active-text: #11140d;
 }
+
+/* The hero holds a playable demo, not a fixed-size logo: let it size itself. */
+.VPHero .image-container {
+  width: auto !important;
+  height: auto !important;
+  transform: none !important;
+  display: flex;
+  justify-content: center;
+}
+.VPHero .image-bg {
+  display: none;
+}
+@media (max-width: 959px) {
+  .VPHero .image {
+    margin: 0 0 24px;
+  }
+}
