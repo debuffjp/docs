@@ -5,22 +5,28 @@ import { defineConfig } from "vitepress";
 const apiSidebarFile = new URL("../api/typedoc-sidebar.json", import.meta.url);
 const apiSidebar = existsSync(apiSidebarFile) ? JSON.parse(readFileSync(apiSidebarFile, "utf8")) : [];
 
+// The site serves from the domain root (Cloudflare); GitHub Pages builds set SITE_BASE=/docs/.
+const base = process.env.SITE_BASE ?? "/";
+// Where the site lives, for absolute links in social cards.
+const origin = process.env.SITE_ORIGIN ?? "https://debuff.jp";
+const FORUMS = "https://forums.debuff.jp";
+
 export default defineConfig({
   title: "debuff",
   description: "Agent-native toolkit for small, polished 2D web games. More room for play.",
-  base: "/docs/",
+  base,
   cleanUrls: true,
   lastUpdated: true,
   appearance: "dark",
   head: [
     ["meta", { name: "theme-color", content: "#a3e635" }],
-    ["link", { rel: "icon", href: "/docs/favicon.svg" }],
+    ["link", { rel: "icon", href: `${base}favicon.svg` }],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:title", content: "debuff · more room for play." }],
     ["meta", { property: "og:description", content: "Agent-native toolkit for small, polished 2D web games." }],
-    ["meta", { property: "og:image", content: "https://debuffjp.github.io/docs/social-card.png" }],
+    ["meta", { property: "og:image", content: `${origin}/social-card.png` }],
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
-    ["meta", { name: "twitter:image", content: "https://debuffjp.github.io/docs/social-card.png" }],
+    ["meta", { name: "twitter:image", content: `${origin}/social-card.png` }],
   ],
   themeConfig: {
     logo: "/lockup.svg",
@@ -28,7 +34,8 @@ export default defineConfig({
     nav: [
       { text: "Guide", link: "/guide/getting-started" },
       { text: "API", link: "/api/" },
-      { text: "Plugins", link: "/guide/plugins" },
+      { text: "Why debuff", link: "/guide/why" },
+      { text: "Forums", link: FORUMS },
       { text: "Roadmap", link: "https://github.com/debuffjp/debuff/blob/main/docs/roadmap.md" },
     ],
     sidebar: {
@@ -63,9 +70,12 @@ export default defineConfig({
       ],
       "/api/": [{ text: "API reference", items: apiSidebar }],
     },
-    socialLinks: [{ icon: "github", link: "https://github.com/debuffjp/debuff" }],
+    socialLinks: [
+      { icon: "github", link: "https://github.com/debuffjp/debuff" },
+      { icon: { svg: '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm3 5v2h10V9H7zm0 4v2h7v-2H7z"/></svg>' }, link: FORUMS, ariaLabel: "Forums" },
+    ],
     editLink: { pattern: "https://github.com/debuffjp/docs/edit/main/:path", text: "Edit this page" },
     search: { provider: "local" },
-    footer: { message: "MIT licensed", copyright: "debuff contributors" },
+    footer: { message: `MIT licensed · <a href="${FORUMS}">forums</a> · <a href="https://github.com/debuffjp/debuff">GitHub</a>`, copyright: "debuff contributors" },
   },
 });

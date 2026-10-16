@@ -3,3 +3,4 @@ api/
 .vitepress/cache/
 .vitepress/dist/
 debuff/
+.wrangler/

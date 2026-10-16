@@ -1,0 +1,12 @@
+{
+  // debuff.jp: the project site (VitePress), served as static assets by a Worker.
+  "name": "debuff-site",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": ".vitepress/dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "workers_dev": true,
+  "routes": [{ "pattern": "debuff.jp", "custom_domain": true }]
+}

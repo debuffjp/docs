@@ -15,6 +15,9 @@ hero:
       text: Why debuff
       link: /guide/why
     - theme: alt
+      text: Forums
+      link: https://forums.debuff.jp
+    - theme: alt
       text: GitHub
       link: https://github.com/debuffjp/debuff
 features:

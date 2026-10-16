@@ -8,7 +8,7 @@
 
 ## Start
 - `npm create debuff@latest my-game` (add `-- --template platformer` for a tilemap platformer), then `npm install` and `npm run dev`.
-- Docs: https://debuffjp.github.io/docs/guide/getting-started · Agent guide: https://debuffjp.github.io/docs/guide/agents
+- Docs: https://debuff.jp/guide/getting-started · Agent guide: https://debuff.jp/guide/agents
 
 ## Agent workflow (MCP: `@debuff/mcp`, preconfigured in new projects' .mcp.json)
 1. `inspect_project`: dependencies, plugins, assets and build size.
@@ -24,6 +24,6 @@
 `new Game({ canvas, width, height, pixelArt })`, then `game.add({ id, enter, update(dt), render(draw), inspect() })`, then `game.go(id)` and `game.start()`. `draw.sprite / rect / circle / line / text / clip / withCamera`. `game.params.define(group, schema)` creates typed, live-tunable values. `@debuff/input` has action bindings with per-step edges. `@debuff/assets` provides a generated manifest and atlases. `@debuff/tilemap` imports Tiled and LDtk and handles collision. `@debuff/juice` has tweens and particles. `@debuff/dev` provides the overlay and `window.__DEBUFF_DEV__`, only inside `if (import.meta.env.DEV)`.
 
 ## Optional
-- API reference: https://debuffjp.github.io/docs/api/
-- Why debuff (comparison with raw canvas): https://debuffjp.github.io/docs/guide/why
+- API reference: https://debuff.jp/api/
+- Why debuff (comparison with raw canvas): https://debuff.jp/guide/why
 - Source: https://github.com/debuffjp/debuff

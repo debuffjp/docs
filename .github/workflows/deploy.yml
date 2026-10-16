@@ -41,6 +41,9 @@ jobs:
         working-directory: docs
       - run: npm run build
         working-directory: docs
+        env:
+          SITE_BASE: /docs/
+          SITE_ORIGIN: https://debuffjp.github.io/docs
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs/.vitepress/dist
