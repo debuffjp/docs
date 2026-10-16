@@ -3,7 +3,7 @@
 Bind named actions to any mix of keys, pointer and gamepad, then ask about actions, not devices.
 
 ```ts
-import { Input } from "@debuff/input";
+import { Input } from "@debuffjp/input";
 
 const input = new Input(game, {
   bindings: {

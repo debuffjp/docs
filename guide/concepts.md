@@ -5,7 +5,7 @@
 `Game` owns the canvas, the loop and the shared services: `camera`, `random`, `params`, `stats`, `hooks`, `inspect`.
 
 ```ts
-import { Game } from "@debuff/core";
+import { Game } from "@debuffjp/core";
 
 const game = new Game({ canvas, width: 320, height: 180, scale: "integer", pixelArt: true });
 ```

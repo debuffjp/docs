@@ -34,7 +34,7 @@ jobs:
           node-version: 24
       - run: npm ci --ignore-scripts
         working-directory: debuff
-      # Type declarations come from the build; without them typedoc cannot resolve @debuff/* imports.
+      # Type declarations come from the build; without them typedoc cannot resolve @debuffjp/* imports.
       - run: npx tsc -b
         working-directory: debuff
       - run: npm install

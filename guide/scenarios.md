@@ -4,7 +4,7 @@ A scenario is a JSON file of steps that drives your game in a real browser and c
 
 ```json
 {
-  "$schema": "../node_modules/@debuff/cli/schema/scenario.schema.json",
+  "$schema": "../node_modules/@debuffjp/cli/schema/scenario.schema.json",
   "steps": [
     { "press": "ArrowRight" },
     { "wait": 30 },

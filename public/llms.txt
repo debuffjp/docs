@@ -10,7 +10,7 @@
 - `npm create debuff@latest my-game` (add `-- --template platformer` for a tilemap platformer), then `npm install` and `npm run dev`.
 - Docs: https://debuff.jp/guide/getting-started · Agent guide: https://debuff.jp/guide/agents
 
-## Agent workflow (MCP: `@debuff/mcp`, preconfigured in new projects' .mcp.json)
+## Agent workflow (MCP: `@debuffjp/mcp`, preconfigured in new projects' .mcp.json)
 1. `inspect_project`: dependencies, plugins, assets and build size.
 2. `game_start`: attaches to the human's open game under `debuff dev` (mode live; your actions appear in their dev panel and can be undone), or else starts a private, paused headless copy (mode headless; time advances only via `game_step`, so runs are deterministic).
 3. Read `game_notes` first in live mode: moments the human flagged, with the game state at that tick.
@@ -21,7 +21,7 @@
 - For `debuff-bug` errors, tell the human and share `reportUrl`. Don't work around debuff internals.
 
 ## Core API in one breath
-`new Game({ canvas, width, height, pixelArt })`, then `game.add({ id, enter, update(dt), render(draw), inspect() })`, then `game.go(id)` and `game.start()`. `draw.sprite / rect / circle / line / text / clip / withCamera`. `game.params.define(group, schema)` creates typed, live-tunable values. `@debuff/input` has action bindings with per-step edges. `@debuff/assets` provides a generated manifest and atlases. `@debuff/tilemap` imports Tiled and LDtk and handles collision. `@debuff/juice` has tweens and particles. `@debuff/dev` provides the overlay and `window.__DEBUFF_DEV__`, only inside `if (import.meta.env.DEV)`.
+`new Game({ canvas, width, height, pixelArt })`, then `game.add({ id, enter, update(dt), render(draw), inspect() })`, then `game.go(id)` and `game.start()`. `draw.sprite / rect / circle / line / text / clip / withCamera`. `game.params.define(group, schema)` creates typed, live-tunable values. `@debuffjp/input` has action bindings with per-step edges. `@debuffjp/assets` provides a generated manifest and atlases. `@debuffjp/tilemap` imports Tiled and LDtk and handles collision. `@debuffjp/juice` has tweens and particles. `@debuffjp/dev` provides the overlay and `window.__DEBUFF_DEV__`, only inside `if (import.meta.env.DEV)`.
 
 ## Optional
 - API reference: https://debuff.jp/api/

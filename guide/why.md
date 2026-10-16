@@ -54,7 +54,7 @@ The perf tab shows your headroom and splits each frame into update and render ti
 
 ## Built for agents, led by you
 
-debuff gives agents evidence instead of guesswork. The `@debuff/mcp` server lets an agent like Claude Code:
+debuff gives agents evidence instead of guesswork. The `@debuffjp/mcp` server lets an agent like Claude Code:
 
 - **play the game you have open.** It presses keys, steps time and reads state. Every action shows in your panel, and you can undo it.
 - **read your notes.** Type "jump feels floaty here", and the agent gets the note along with the game state at that moment.

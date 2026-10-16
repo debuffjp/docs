@@ -11,8 +11,8 @@ Put source files in `assets/`. The CLI builds a manifest from them. Only files t
 Folders become **preload groups**, so you can load a level's assets when you need them.
 
 ```ts
-import { Assets } from "@debuff/assets";
-import { Sprite } from "@debuff/core";
+import { Assets } from "@debuffjp/assets";
+import { Sprite } from "@debuffjp/core";
 
 const assets = new Assets(await (await fetch("assets/manifest.json")).json());
 await assets.load("default", ({ loaded, total }) => bar(loaded / total));

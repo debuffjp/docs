@@ -5,7 +5,7 @@ Plugins extend debuff through small, typed contracts ([ADR 0004](https://github.
 ## The contract
 
 ```ts
-import type { Plugin } from "@debuff/core";
+import type { Plugin } from "@debuffjp/core";
 
 interface Plugin {
   readonly name: string; // unique, kebab-case
@@ -29,7 +29,7 @@ Every hook registration returns an unsubscribe function. Return a cleanup that c
 ## Example
 
 ```ts
-import type { Plugin } from "@debuff/core";
+import type { Plugin } from "@debuffjp/core";
 
 export interface DebugGridOptions {
   size?: number;
@@ -71,20 +71,20 @@ export function debugGrid(options: DebugGridOptions = {}): Plugin {
 
 ## Publishing
 
-- Name: `debuff-plugin-<name>` (or `@scope/debuff-plugin-<name>`). First-party plugins use `@debuff/plugin-<name>`.
-- Add the `debuff-plugin` keyword, and `@debuff/core` as a peer dependency.
+- Name: `debuff-plugin-<name>` (or `@scope/debuff-plugin-<name>`). First-party plugins use `@debuffjp/plugin-<name>`.
+- Add the `debuff-plugin` keyword, and `@debuffjp/core` as a peer dependency.
 - Expose browser code at `"."`. Tooling code (phase 2) will go at `"./tooling"`.
 
 ## Reference implementation
 
-`@debuff/dev` ships as the `dev-tools` plugin (`game.use(devTools({ input }))`). Read its source for a complete example with cleanup.
+`@debuffjp/dev` ships as the `dev-tools` plugin (`game.use(devTools({ input }))`). Read its source for a complete example with cleanup.
 
 ## Asset importers
 
 Tooling plugins go in `debuff.config.ts`. An importer claims file suffixes and returns manifest entries. It can be a TypeScript function, or any program that reads a `SourceFile` as JSON on stdin and prints an `ImportResult` as JSON on stdout.
 
 ```ts
-import { defineConfig } from "@debuff/cli";
+import { defineConfig } from "@debuffjp/cli";
 
 export default defineConfig({
   plugins: [
