@@ -1,3 +1,7 @@
+---
+description: "Move feel values like speed and gravity into typed params you can tune live in the dev panel, adjust from agents and test in scenarios."
+---
+
 # Tunable params
 
 Pull the numbers that shape how your game feels out of the code and into typed params. You can tune them live, agents can read and adjust them safely, and scenarios can test them.

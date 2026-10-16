@@ -1,3 +1,7 @@
+---
+description: "Create your first browser game with debuff: npm create debuff, run the dev server, make a change and build it for the web."
+---
+
 # Getting started
 
 ## Create a game

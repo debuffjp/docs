@@ -1,3 +1,7 @@
+---
+description: "Write debuff runtime plugins: the typed plugin contract, lifecycle hooks, inspection and cleanup, with examples."
+---
+
 # Writing plugins
 
 Plugins extend debuff through small, typed contracts ([ADR 0004](https://github.com/debuffjp/debuff/blob/main/docs/adr/0004-plugin-api.md)). This guide covers **runtime plugins**, which run in the browser. Tooling plugins (asset importers, CLI commands, scenario steps) come in phase 2.

@@ -1,3 +1,7 @@
+---
+description: "Bind keyboard, pointer, touch and gamepad to named actions in debuff, with per-step pressed and released edges that never miss a tap."
+---
+
 # Input
 
 Bind named actions to any mix of keys, pointer and gamepad, then ask about actions, not devices.

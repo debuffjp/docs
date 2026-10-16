@@ -24,6 +24,7 @@
 `new Game({ canvas, width, height, pixelArt })`, then `game.add({ id, enter, update(dt), render(draw), inspect() })`, then `game.go(id)` and `game.start()`. `draw.sprite / rect / circle / line / text / clip / withCamera`. `game.params.define(group, schema)` creates typed, live-tunable values. `@debuffjp/input` has action bindings with per-step edges. `@debuffjp/assets` provides a generated manifest and atlases. `@debuffjp/tilemap` imports Tiled and LDtk and handles collision. `@debuffjp/juice` has tweens and particles. `@debuffjp/dev` provides the overlay and `window.__DEBUFF_DEV__`, only inside `if (import.meta.env.DEV)`.
 
 ## Optional
+- All guides in one file: https://debuff.jp/llms-full.txt
 - API reference: https://debuff.jp/api/
 - Why debuff (comparison with raw canvas): https://debuff.jp/guide/why
 - Source: https://github.com/debuffjp/debuff

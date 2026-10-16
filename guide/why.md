@@ -1,3 +1,7 @@
+---
+description: "Why debuff over raw canvas and JavaScript: ~200,000 sprites at 60 fps, a 13 kB starter, explained errors, live tuning and agents that play your game."
+---
+
 # Why debuff
 
 You can make a 2D web game with nothing but a `<canvas>` and JavaScript. debuff stays close to those standards on purpose. It adds the parts every game ends up rebuilding, plus tools that show you, and your agent, what the game is actually doing.

@@ -1,5 +1,8 @@
 ---
 layout: home
+title: debuff, a 2D web game toolkit
+titleTemplate: false
+description: "debuff is an open-source toolkit for small, fast 2D browser games: batched WebGL2, explained errors, live tuning, and coding agents that can play your game."
 hero:
   name: debuff
   text: more room for play.

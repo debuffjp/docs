@@ -1,3 +1,7 @@
+---
+description: "Ship a debuff browser game as a desktop app with Tauri: a 1.8 MB Windows installer from the starter game, with steps and caveats for macOS and Linux."
+---
+
 # Desktop builds
 
 A debuff game is a static web app, so it can ship as a desktop app by wrapping it in a native window. We recommend **[Tauri](https://tauri.app)**. It uses the operating system's own webview instead of bundling a browser, so installers stay tiny.

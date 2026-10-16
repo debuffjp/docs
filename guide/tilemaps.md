@@ -1,3 +1,7 @@
+---
+description: "Tilemaps in debuff: import Tiled and LDtk levels, render them culled and batched, and collide with solid and one-way tiles."
+---
+
 # Tilemaps and collision
 
 `@debuffjp/tilemap`: culled, batched rendering through `draw`, tile collision, and importers for [Tiled](https://www.mapeditor.org/) and [LDtk](https://ldtk.io/).

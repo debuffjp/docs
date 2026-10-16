@@ -1,3 +1,7 @@
+---
+description: "Test your browser game with deterministic JSON scenarios: drive input, check state and compare screenshots in a headless browser."
+---
+
 # Testing with scenarios
 
 A scenario is a JSON file of steps that drives your game in a real browser and checks what happens. Time only moves forward through `wait` steps, so runs are deterministic.

@@ -1,8 +1,12 @@
+---
+description: "Use debuff without a bundler: load the ES modules from a CDN with an import map, for prototypes, sketches, teaching and tiny jam games."
+---
+
 # Using debuff without a build step
 
 The runtime packages are plain ES modules with no dependencies, so any page can load them straight from a CDN with an [import map](https://developer.mozilla.org/docs/Web/HTML/Element/script/type/importmap). This suits prototypes, CodePen-style sketches, teaching and very small jam entries.
 
-> Available from the first npm release. Pin an exact version in real projects.
+> Pin an exact version in real projects.
 
 ```html
 <!doctype html>

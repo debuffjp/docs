@@ -1,3 +1,7 @@
+---
+description: "Draw sprites, text, shapes and clipped UI with debuff's batched WebGL2 renderer, which falls back to Canvas 2D automatically."
+---
+
 # Drawing
 
 Scenes draw through `draw`, an immediate-mode API in logical units. It runs on a batched **WebGL2** renderer and falls back to **Canvas 2D** automatically where WebGL2 isn't available. Your code is the same either way.

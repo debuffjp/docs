@@ -1,3 +1,7 @@
+---
+description: "The core ideas in debuff: the Game, scenes, the fixed-step loop, camera, seeded random, params, hooks and how they fit together."
+---
+
 # Core concepts
 
 ## Game

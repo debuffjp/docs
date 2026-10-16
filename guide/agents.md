@@ -1,3 +1,7 @@
+---
+description: "Build browser games with AI coding agents like Claude Code: the debuff MCP server lets agents play your game, read state and errors, and verify changes."
+---
+
 # Working with AI agents
 
 debuff gives agents the same evidence you'd want before trusting a change: what's in the project, what's tunable, what's happening at runtime, and whether the change worked.

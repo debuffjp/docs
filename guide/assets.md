@@ -1,3 +1,7 @@
+---
+description: "debuff's asset pipeline: drop files in assets/, get a generated manifest and automatic sprite atlases, and ship only what your game uses."
+---
+
 # Assets
 
 Put source files in `assets/`. The CLI builds a manifest from them. Only files the manifest references are served in dev and shipped in builds, and your sources are never modified.
