@@ -62,6 +62,7 @@ export default defineConfig({
           text: "Tooling",
           items: [
             { text: "Testing with scenarios", link: "/guide/scenarios" },
+            { text: "Desktop builds", link: "/guide/desktop" },
             { text: "Working with AI agents", link: "/guide/agents" },
             { text: "Plugins", link: "/guide/plugins" },
           ],
