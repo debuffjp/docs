@@ -47,6 +47,7 @@ export default defineConfig({
             { text: "Drawing", link: "/guide/drawing" },
             { text: "Input", link: "/guide/input" },
             { text: "Assets", link: "/guide/assets" },
+            { text: "Tilemaps and collision", link: "/guide/tilemaps" },
             { text: "Tunable params", link: "/guide/params" },
           ],
         },

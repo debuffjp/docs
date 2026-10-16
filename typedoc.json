@@ -7,6 +7,7 @@
     "../debuff/packages/assets",
     "../debuff/packages/audio",
     "../debuff/packages/juice",
+    "../debuff/packages/tilemap",
     "../debuff/packages/dev"
   ],
   "packageOptions": { "entryPoints": ["src/index.ts"], "tsconfig": "tsconfig.json" },
