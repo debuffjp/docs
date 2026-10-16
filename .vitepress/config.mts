@@ -15,9 +15,16 @@ export default defineConfig({
   head: [
     ["meta", { name: "theme-color", content: "#a3e635" }],
     ["link", { rel: "icon", href: "/docs/favicon.svg" }],
+    ["meta", { property: "og:type", content: "website" }],
+    ["meta", { property: "og:title", content: "debuff · more room for play." }],
+    ["meta", { property: "og:description", content: "Agent-native toolkit for small, polished 2D web games." }],
+    ["meta", { property: "og:image", content: "https://debuffjp.github.io/docs/social-card.png" }],
+    ["meta", { name: "twitter:card", content: "summary_large_image" }],
+    ["meta", { name: "twitter:image", content: "https://debuffjp.github.io/docs/social-card.png" }],
   ],
   themeConfig: {
-    logo: "/favicon.svg",
+    logo: "/lockup.svg",
+    siteTitle: false,
     nav: [
       { text: "Guide", link: "/guide/getting-started" },
       { text: "API", link: "/api/" },

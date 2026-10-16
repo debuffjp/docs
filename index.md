@@ -2,11 +2,11 @@
 layout: home
 hero:
   name: debuff
-  text: More room for play.
+  text: more room for play.
   tagline: An open-source, agent-native toolkit for small, polished 2D web games.
   image:
-    src: /deeb.svg
-    alt: deeb, the debuff mascot
+    src: /buff.svg
+    alt: buff, the debuff mascot
   actions:
     - theme: brand
       text: Get started

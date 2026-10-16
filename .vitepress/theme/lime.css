@@ -15,3 +15,25 @@
   --vp-c-bg-alt: #11140d;
   --vp-c-bg-soft: #161b10;
 }
+
+/* Type: Outfit for display, Geist for body, Geist Mono for code (all self-hosted, OFL). */
+:root {
+  --vp-font-family-base: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --vp-font-family-mono: "Geist Mono Variable", ui-monospace, monospace;
+  --vp-font-family-display: "Outfit Variable", var(--vp-font-family-base);
+}
+.VPHero .name,
+.VPHero .text,
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3,
+.VPFeature .title {
+  font-family: var(--vp-font-family-display);
+  letter-spacing: -0.01em;
+}
+.VPHero .name { font-weight: 800; }
+.vp-doc h1 { font-weight: 800; }
+.vp-doc h2,
+.vp-doc h3 { font-weight: 600; }
+/* The nav shows the outlined lockup instead of logo + text. */
+.VPNavBarTitle .logo { height: 26px; }
