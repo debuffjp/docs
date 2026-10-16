@@ -6,7 +6,7 @@ description: "debuff is an open-source toolkit for small, fast 2D browser games:
 hero:
   name: debuff
   text: more room for play.
-  tagline: Make lightweight browser games without spending your best ideas on setup and plumbing. A small runtime and a workflow built for fast iteration, with or without coding agents.
+  tagline: Small, fast 2D games for the browser, minus the plumbing. A 13 kB starter, 200,000 sprites at 60 fps, and dev tools that tell you exactly what broke.
   actions:
     - theme: brand
       text: Build your first game
@@ -38,11 +38,11 @@ debuff ships those parts as small, tree-shakeable packages built on web standard
 ## From idea to shipped game
 
 <ol class="steps">
-<li><strong>Start</strong><code>npm create debuff@latest my-game</code><span>A running game in under a minute, with a <a href="/docs/getting-started">starter or a platformer</a>.</span></li>
-<li><strong>Build</strong><code>draw · input · assets · tilemap</code><span>Sprites, levels from <a href="/docs/tilemaps">Tiled and LDtk</a>, and an <a href="/docs/assets">asset pipeline</a> that ships only what you use.</span></li>
-<li><strong>Tune</strong><code>game.params.define(…)</code><span>Feel values become <a href="/docs/params">live sliders</a> in the dev panel, with undo.</span></li>
-<li><strong>Verify</strong><code>npm test · debuff fuzz</code><span><a href="/docs/scenarios">Deterministic scenarios</a> with screenshots, and random playtesting that hands you a replay of every crash.</span></li>
-<li><strong>Ship</strong><code>npm run build</code><span>A size report that fails if dev code leaks. Web anywhere, or <a href="/docs/desktop">desktop with Tauri</a>.</span></li>
+<li class="c-lime"><strong>Start</strong><CopyCommand cmd="npm create debuff@latest my-game" label="npm create debuff" /><span>A running game in under a minute, with a <a href="/docs/getting-started">starter or a platformer</a>.</span></li>
+<li class="c-sky"><strong>Build</strong><code>draw · input · assets · tilemap</code><span>Sprites, levels from <a href="/docs/tilemaps">Tiled and LDtk</a>, and an <a href="/docs/assets">asset pipeline</a> that ships only what you use.</span></li>
+<li class="c-pink"><strong>Tune</strong><code>game.params.define(…)</code><span>Feel values become <a href="/docs/params">live sliders</a> in the dev panel, with undo.</span></li>
+<li class="c-amber"><strong>Verify</strong><CopyCommand cmd="npm test" /><span><a href="/docs/scenarios">Deterministic scenarios</a> drive your game in a real browser and compare screenshots.</span></li>
+<li class="c-violet"><strong>Ship</strong><CopyCommand cmd="npm run build" /><span>A size report that fails if dev code leaks. Web anywhere, or <a href="/docs/desktop">desktop with Tauri</a>.</span></li>
 </ol>
 
 </section>
@@ -52,11 +52,11 @@ debuff ships those parts as small, tree-shakeable packages built on web standard
 ## What you get
 
 <div class="cards">
-<a class="card" href="/benchmarks"><strong>A fast, small runtime</strong><span>Batched WebGL2 with a Canvas 2D fallback. About 200,000 sprites at 60 fps on our benchmark machine; the starter ships at about 13 kB brotli.</span></a>
-<a class="card" href="/docs/why"><strong>Errors that explain themselves</strong><span>A crash stops the game cleanly and says whose bug it is (your code, a rejected call, or debuff), with the exact source line and a hint.</span></a>
-<a class="card" href="/docs/why#know-where-every-frame-goes"><strong>Dev panel that answers "why?"</strong><span>Pause, step, slow motion, live game state, and dropped frames attributed to your code or to something outside it.</span></a>
-<a class="card" href="/docs/scenarios"><strong>Tests you can trust</strong><span>Same inputs, same game: scenarios and fuzz runs replay exactly, so bugs come with a reproduction.</span></a>
-<a class="card" href="/docs/no-build"><strong>Web standards only</strong><span>ES modules, a canvas, Web Audio and Gamepad. No proprietary editor or project format. It even runs from a CDN with no build step.</span></a>
+<a class="card c-lime" href="/benchmarks"><strong>A fast, small runtime</strong><span>Batched WebGL2 with a Canvas 2D fallback. About 200,000 sprites at 60 fps on our benchmark machine; the starter ships at about 13 kB brotli.</span></a>
+<a class="card c-pink" href="/docs/why"><strong>Errors that explain themselves</strong><span>A crash stops the game cleanly and says whose bug it is (your code, a rejected call, or debuff), with the exact source line and a hint.</span></a>
+<a class="card c-sky" href="/docs/why#know-where-every-frame-goes"><strong>Dev panel that answers "why?"</strong><span>Pause, step, slow motion, live game state, and dropped frames attributed to your code or to something outside it.</span></a>
+<a class="card c-amber" href="/docs/scenarios"><strong>Tests you can trust</strong><span>Same inputs, same game: scenarios replay exactly, so a bug comes with a reproduction instead of "works on my machine".</span></a>
+<a class="card c-violet" href="/docs/no-build"><strong>Web standards only</strong><span>ES modules, a canvas, Web Audio and Gamepad. No proprietary editor or project format. It even runs from a CDN with no build step.</span></a>
 </div>
 
 </section>
@@ -73,7 +73,7 @@ The plinko board on this page is a real debuff game, running right here. The [ex
 
 ## Works with coding agents, led by you
 
-Agents are welcome and never required. With the [debuff MCP server](/docs/agents), an agent like Claude Code can play the game you have open, read its state and explained errors, tune params and verify its changes with scenarios and fuzz runs. Every action it takes shows in your dev panel, where you can undo it.
+Agents are welcome and never required. With the [debuff MCP server](/docs/agents), an agent like Claude Code can play the game you have open, read its state and explained errors, tune params and verify its changes with scenarios. Every action it takes shows in your dev panel, where you can undo it.
 
 New projects ship an `AGENTS.md` with the commands and rules, so agents start with the right context. Creative calls stay with you: the tools are built for agents to propose and people to decide.
 
@@ -84,10 +84,10 @@ New projects ship an `AGENTS.md` with the commands and rules, so agents start wi
 ## Measured, not claimed
 
 <div class="stats">
-<div><strong>~200,000</strong><span>sprites at 60 fps (<a href="/benchmarks">method</a>)</span></div>
-<div><strong>~13 kB</strong><span>brotli for the starter game, everything included</span></div>
-<div><strong>1.8 MB</strong><span>Windows installer for the starter via <a href="/docs/desktop">Tauri</a></span></div>
-<div><strong>0</strong><span>telemetry in the toolkit or your games (<a href="/privacy">privacy</a>)</span></div>
+<div class="c-lime"><strong>~200,000</strong><span>sprites at 60 fps (<a href="/benchmarks">method</a>)</span></div>
+<div class="c-sky"><strong>~13 kB</strong><span>brotli for the starter game, everything included</span></div>
+<div class="c-pink"><strong>1.8 MB</strong><span>Windows installer for the starter via <a href="/docs/desktop">Tauri</a></span></div>
+<div class="c-amber"><strong>0</strong><span>telemetry in the toolkit or your games (<a href="/privacy">privacy</a>)</span></div>
 </div>
 
 </section>
@@ -96,9 +96,7 @@ New projects ship an `AGENTS.md` with the commands and rules, so agents start wi
 
 ## Make something weird.
 
-```bash
-npm create debuff@latest my-game
-```
+<CopyCommand cmd="npm create debuff@latest my-game" size="lg" />
 
 <p class="final-links"><a class="final-primary" href="/docs/getting-started">Build your first game</a> <a href="https://github.com/debuffjp/debuff">Source on GitHub</a> <a href="https://github.com/debuffjp/debuff/issues">Ask a question</a></p>
 
@@ -107,6 +105,18 @@ npm create debuff@latest my-game
 </div>
 
 <style>
+.home-sections {
+  --c-lime: #cffb2d;
+  --c-sky: #38bdf8;
+  --c-pink: #f472b6;
+  --c-amber: #fbbf24;
+  --c-violet: #a78bfa;
+}
+.c-lime { --accent: var(--c-lime); }
+.c-sky { --accent: var(--c-sky); }
+.c-pink { --accent: var(--c-pink); }
+.c-amber { --accent: var(--c-amber); }
+.c-violet { --accent: var(--c-violet); }
 .home-sections {
   max-width: 1152px;
   margin: 0 auto;
@@ -158,8 +168,9 @@ npm create debuff@latest my-game
 @media (min-width: 960px) {
   .steps { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
-.steps code { overflow-wrap: anywhere; white-space: normal; }
+.steps li > code { overflow-wrap: anywhere; white-space: normal; }
 .steps li {
+  border-top: 3px solid var(--accent, var(--vp-c-divider)) !important;
   counter-increment: step;
   padding: 16px;
   border: 1px solid var(--vp-c-divider);
@@ -170,13 +181,14 @@ npm create debuff@latest my-game
 }
 .steps li strong::before {
   content: counter(step) " ";
-  color: var(--vp-c-brand-1);
+  color: var(--accent, var(--vp-c-brand-1));
   font-family: var(--vp-font-family-mono);
 }
-.steps code {
+.steps li > code {
   font-size: 12px;
   width: fit-content;
 }
+.steps .cmd { width: 100%; }
 .steps span {
   color: var(--vp-c-text-2);
   font-size: 14px;
@@ -200,7 +212,18 @@ npm create debuff@latest my-game
   text-decoration: none !important;
   transition: border-color 0.2s;
 }
-.card:hover { border-color: var(--vp-c-brand-1); }
+.card { border-top: 3px solid var(--accent, var(--vp-c-divider)) !important; }
+.card:hover { border-color: var(--accent, var(--vp-c-brand-1)); }
+.card strong::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-radius: 2px;
+  background: var(--accent, var(--vp-c-brand-1));
+  vertical-align: 2px;
+}
 .card strong { color: var(--vp-c-text-1); font-size: 16px; }
 .card span { color: var(--vp-c-text-2); font-size: 14px; line-height: 1.6; }
 .stats {
@@ -219,8 +242,9 @@ npm create debuff@latest my-game
   font-family: var(--vp-font-family-display);
   font-size: 32px;
   font-weight: 800;
-  color: var(--vp-c-brand-1);
+  color: var(--accent, var(--vp-c-brand-1));
 }
+.stats div { border-left: 3px solid var(--accent, transparent); }
 .stats span { color: var(--vp-c-text-2); font-size: 14px; }
 .home-final { text-align: left; }
 .home-final h2 { font-size: 36px; }
