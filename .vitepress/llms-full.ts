@@ -30,14 +30,14 @@ export function writeLlmsFull(srcDir: string, outDir: string, canonical: string)
     "",
   ];
   for (const name of ORDER) {
-    const raw = readFileSync(join(srcDir, "guide", `${name}.md`), "utf8");
+    const raw = readFileSync(join(srcDir, "docs", `${name}.md`), "utf8");
     const body = raw
       .replace(/^---\n[\s\S]*?\n---\n/, "") // frontmatter
       .replace(/^:::\s*\w+.*$/gm, "") // container openers like "::: info Status"
       .replace(/^:::\s*$/gm, "") // container closers
       .replace(/\n{3,}/g, "\n\n")
       .trim();
-    parts.push(`<!-- source: ${canonical}/guide/${name} -->`, "", body, "", "---", "");
+    parts.push(`<!-- source: ${canonical}/docs/${name} -->`, "", body, "", "---", "");
   }
   writeFileSync(join(outDir, "llms-full.txt"), `${parts.join("\n").trim()}\n`);
 }

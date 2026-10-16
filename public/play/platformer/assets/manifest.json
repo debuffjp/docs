@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "assets": {
+    "buff": {
+      "type": "image",
+      "src": "assets/_atlas/default-0.png",
+      "grid": {
+        "frameWidth": 24,
+        "frameHeight": 24
+      },
+      "bytes": 2124,
+      "hash": "9bdab4c1b7ec",
+      "rect": {
+        "x": 1,
+        "y": 1,
+        "w": 144,
+        "h": 144
+      }
+    },
+    "coin": {
+      "type": "image",
+      "src": "assets/_atlas/default-0.png",
+      "grid": {
+        "frameWidth": 12,
+        "frameHeight": 12
+      },
+      "bytes": 209,
+      "hash": "9bdab4c1b7ec",
+      "rect": {
+        "x": 213,
+        "y": 1,
+        "w": 48,
+        "h": 12
+      }
+    },
+    "level1": {
+      "type": "json",
+      "src": "assets/level1.tmj",
+      "bytes": 4256,
+      "hash": "88026d2f5bd9"
+    },
+    "tiles": {
+      "type": "image",
+      "src": "assets/_atlas/default-0.png",
+      "grid": {
+        "frameWidth": 16,
+        "frameHeight": 16
+      },
+      "bytes": 391,
+      "hash": "9bdab4c1b7ec",
+      "rect": {
+        "x": 147,
+        "y": 1,
+        "w": 64,
+        "h": 16
+      }
+    }
+  }
+}

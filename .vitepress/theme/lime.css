@@ -72,3 +72,33 @@
     margin: 0 0 24px;
   }
 }
+
+/* Nav: the arrow mark and the lowercase wordmark. */
+.VPNavBarTitle .logo {
+  height: 24px;
+  width: 24px;
+}
+.VPNavBarTitle .title {
+  font-family: var(--vp-font-family-display);
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  color: var(--vp-c-brand-1);
+}
+/* The "Build your first game" nav link is the primary action. */
+.VPNavBarMenuLink[href$="#create-a-game"] {
+  margin-left: 8px;
+  padding: 0 14px;
+  height: 32px;
+  line-height: 32px;
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: #cffb2d;
+  color: #11140d !important;
+  font-weight: 600;
+}
+.VPNavBarMenuLink[href$="#create-a-game"]:hover {
+  background: #ddfc6c;
+}

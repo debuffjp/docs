@@ -47,7 +47,7 @@ export default defineConfig({
     // Search engine ownership verification (Google Search Console, Bing Webmaster Tools).
     ["meta", { name: "google-site-verification", content: "EICOKV4M-kvzgj0yUEuEGQOEvV4H8KFLcy2H_49CmNw" }],
     ["meta", { name: "msvalidate.01", content: "8D3524238E187A30C4AFA9F534804EF5" }],
-    ["link", { rel: "icon", href: `${base}favicon.svg` }],
+    ["link", { rel: "icon", href: `${base}mark.svg`, type: "image/svg+xml" }],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:image", content: `${origin}/social-card.png` }],
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
@@ -71,42 +71,46 @@ export default defineConfig({
     }
   },
   themeConfig: {
-    logo: "/lockup.svg",
-    siteTitle: false,
+    // The Debuff Foundation mark; buff stays the mascot in games, the dev panel and the splash.
+    logo: { src: "/mark.svg", alt: "" },
+    siteTitle: "debuff",
     nav: [
-      { text: "Guide", link: "/guide/getting-started" },
-      { text: "API", link: "/api/" },
-      { text: "Why debuff", link: "/guide/why" },
+      { text: "Docs", link: "/docs/getting-started", activeMatch: "^/docs/" },
+      { text: "Examples", link: "/examples" },
+      { text: "Benchmarks", link: "/benchmarks" },
+      { text: "API", link: "/api/", activeMatch: "^/api/" },
       { text: "Roadmap", link: "https://github.com/debuffjp/debuff/blob/main/docs/roadmap.md" },
+      // Styled as the primary button (lime.css).
+      { text: "Build your first game", link: "/docs/getting-started#create-a-game" },
     ],
     sidebar: {
-      "/guide/": [
+      "/docs/": [
         {
           text: "Start",
           items: [
-            { text: "Why debuff", link: "/guide/why" },
-            { text: "Getting started", link: "/guide/getting-started" },
-            { text: "Core concepts", link: "/guide/concepts" },
-            { text: "Without a build step", link: "/guide/no-build" },
+            { text: "Why debuff", link: "/docs/why" },
+            { text: "Getting started", link: "/docs/getting-started" },
+            { text: "Core concepts", link: "/docs/concepts" },
+            { text: "Without a build step", link: "/docs/no-build" },
           ],
         },
         {
           text: "Making games",
           items: [
-            { text: "Drawing", link: "/guide/drawing" },
-            { text: "Input", link: "/guide/input" },
-            { text: "Assets", link: "/guide/assets" },
-            { text: "Tilemaps and collision", link: "/guide/tilemaps" },
-            { text: "Tunable params", link: "/guide/params" },
+            { text: "Drawing", link: "/docs/drawing" },
+            { text: "Input", link: "/docs/input" },
+            { text: "Assets", link: "/docs/assets" },
+            { text: "Tilemaps and collision", link: "/docs/tilemaps" },
+            { text: "Tunable params", link: "/docs/params" },
           ],
         },
         {
           text: "Tooling",
           items: [
-            { text: "Testing with scenarios", link: "/guide/scenarios" },
-            { text: "Desktop builds", link: "/guide/desktop" },
-            { text: "Working with AI agents", link: "/guide/agents" },
-            { text: "Plugins", link: "/guide/plugins" },
+            { text: "Testing with scenarios", link: "/docs/scenarios" },
+            { text: "Desktop builds", link: "/docs/desktop" },
+            { text: "Working with AI agents", link: "/docs/agents" },
+            { text: "Plugins", link: "/docs/plugins" },
           ],
         },
       ],

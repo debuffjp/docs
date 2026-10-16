@@ -75,4 +75,4 @@ Creative calls stay with you. The tools are built so agents propose and you deci
 
 debuff is for small, polished 2D web games: jams, instant-play portals and prototypes. If you need 3D, a visual editor, or a full physics engine, a larger engine will serve you better. debuff plays well next to them (it's just ES modules on a canvas), but it won't pretend to be one.
 
-[Get started →](/guide/getting-started)
+[Get started →](/docs/getting-started)

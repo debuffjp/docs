@@ -1,0 +1,3 @@
+# The guides moved to /docs/ (October 2026). Keep old links and search results working.
+/guide /docs/getting-started 301
+/guide/* /docs/:splat 301

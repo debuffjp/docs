@@ -8,7 +8,7 @@
 
 ## Start
 - `npm create debuff@latest my-game` (add `-- --template platformer` for a tilemap platformer), then `npm install` and `npm run dev`.
-- Docs: https://debuff.jp/guide/getting-started · Agent guide: https://debuff.jp/guide/agents
+- Docs: https://debuff.jp/docs/getting-started · Agent guide: https://debuff.jp/docs/agents
 
 ## Agent workflow (MCP: `@debuffjp/mcp`, preconfigured in new projects' .mcp.json)
 1. `inspect_project`: dependencies, plugins, assets and build size.
@@ -26,5 +26,5 @@
 ## Optional
 - All guides in one file: https://debuff.jp/llms-full.txt
 - API reference: https://debuff.jp/api/
-- Why debuff (comparison with raw canvas): https://debuff.jp/guide/why
+- Why debuff (comparison with raw canvas): https://debuff.jp/docs/why
 - Source: https://github.com/debuffjp/debuff
