@@ -3,6 +3,8 @@ import "@fontsource-variable/geist";
 import "@fontsource-variable/geist-mono";
 import DefaultTheme from "vitepress/theme";
 import { h } from "vue";
+import BlogIndex from "./BlogIndex.vue";
+import BlogPostMeta from "./BlogPostMeta.vue";
 import CopyCommand from "./CopyCommand.vue";
 import NotFound from "./NotFound.vue";
 import PlayEmbed from "./PlayEmbed.vue";
@@ -16,11 +18,13 @@ export default {
     app.component("PlinkoHero", PlinkoHero);
     app.component("PlayEmbed", PlayEmbed);
     app.component("CopyCommand", CopyCommand);
+    app.component("BlogIndex", BlogIndex);
   },
   // A confused buff instead of the default 404; a playable debuff demo instead of a hero image.
   Layout: () =>
     h(DefaultTheme.Layout, null, {
       "not-found": () => h(NotFound),
       "home-hero-image": () => h(PlinkoHero),
+      "doc-before": () => h(BlogPostMeta),
     }),
 };

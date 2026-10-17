@@ -69,6 +69,31 @@ export default defineConfig({
     if (page.frontmatter.layout === "home") {
       page.frontmatter.head.push(["script", { type: "application/ld+json" }, JSON.stringify(softwareLd)]);
     }
+    // Blog posts: Article structured data, and the article type for social cards.
+    if (/^blog\/(?!index\.md$)/.test(page.relativePath)) {
+      const date = new Date(page.frontmatter.date).toISOString().slice(0, 10);
+      page.frontmatter.head.push(
+        ["meta", { property: "og:type", content: "article" }],
+        ["meta", { property: "article:published_time", content: date }],
+        [
+          "script",
+          { type: "application/ld+json" },
+          JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: page.frontmatter.title,
+            description,
+            url,
+            mainEntityOfPage: url,
+            datePublished: date,
+            dateModified: page.lastUpdated ? new Date(page.lastUpdated).toISOString() : date,
+            image: `${CANONICAL}/social-card.png`,
+            author: { "@type": "Organization", name: "Debuff Foundation", url: CANONICAL },
+            publisher: { "@type": "Organization", name: "Debuff Foundation", url: CANONICAL },
+          }),
+        ],
+      );
+    }
   },
   themeConfig: {
     // The Debuff Foundation mark; buff stays the mascot in games, the dev panel and the splash.
@@ -119,6 +144,8 @@ export default defineConfig({
         {
           text: "Blog",
           items: [
+            { text: "Coding agents: how debuff compares", link: "/blog/coding-agents-and-browser-game-engines" },
+            { text: "Build a game with Claude Code", link: "/blog/build-a-game-with-claude-code" },
             { text: "Make a game with an AI agent", link: "/blog/make-a-browser-game-with-an-ai-coding-agent" },
             { text: "debuff vs PixiJS vs Phaser", link: "/blog/debuff-vs-pixijs-vs-phaser" },
             { text: "Pixel-art platformer", link: "/blog/pixel-art-platformer-in-the-browser" },

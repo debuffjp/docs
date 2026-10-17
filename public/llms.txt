@@ -27,4 +27,6 @@
 - All guides in one file: https://debuff.jp/llms-full.txt
 - API reference: https://debuff.jp/api/
 - Why debuff (comparison with raw canvas): https://debuff.jp/docs/why
+- How debuff compares with Phaser, PixiJS, KAPLAY, Excalibur and Godot for coding agents: https://debuff.jp/blog/coding-agents-and-browser-game-engines
+- Walkthrough, building a game with Claude Code: https://debuff.jp/blog/build-a-game-with-claude-code
 - Source: https://github.com/debuffjp/debuff
