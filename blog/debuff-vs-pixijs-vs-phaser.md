@@ -53,4 +53,4 @@ npm install
 npm run dev
 ```
 
-Read more in [Why debuff](/docs/why).
+For a closer look at each engine, see [debuff vs Phaser](./debuff-vs-phaser) and [debuff vs PixiJS](./debuff-vs-pixijs), or [how they compare for coding agents](./coding-agents-and-browser-game-engines). Read more in [Why debuff](/docs/why).

@@ -5,6 +5,7 @@ import DefaultTheme from "vitepress/theme";
 import { h } from "vue";
 import BlogIndex from "./BlogIndex.vue";
 import BlogPostMeta from "./BlogPostMeta.vue";
+import BlogRelated from "./BlogRelated.vue";
 import CopyCommand from "./CopyCommand.vue";
 import HeroInfo from "./HeroInfo.vue";
 import NotFound from "./NotFound.vue";
@@ -32,5 +33,6 @@ export default {
       "home-hero-image": () => h(PlinkoHero),
       "home-hero-info": () => h(HeroInfo),
       "doc-before": () => h(BlogPostMeta),
+      "doc-after": () => h(BlogRelated),
     }),
 };
