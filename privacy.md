@@ -18,8 +18,8 @@ The playable demo on the home page runs entirely in your browser and sends nothi
 
 ## The debuff toolkit
 
-The debuff packages, CLI, dev tools and MCP server **collect no telemetry**. Games you make with debuff send nothing to us. The dev tools and MCP server only talk to your own local dev server.
+The debuff packages, CLI, dev tools, MCP server and Claude plugin **collect no telemetry**. Games you make with debuff send nothing to us. The dev tools and MCP server only talk to your own local dev server.
 
 ## Contact
 
-Questions about this page: [open an issue](https://github.com/debuffjp/debuff/issues).
+Questions about this page: ask on [Discord](https://discord.gg/jshbDHSpCY) or [open an issue](https://github.com/debuffjp/debuff/issues).
