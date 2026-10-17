@@ -5,7 +5,7 @@ description: "The window.__KEIKO__ hooks: state, scene, params, commands, custom
 
 # Exposing your game
 
-keiko can play any game without help: it steps the virtual clock and sends real input events. To **read** the game and reach its tuning, add `window.__KEIKO__` in development builds. Every hook is optional.
+Keiko can play any game without help: it steps the virtual clock and sends real input events. To **read** the game and reach its tuning, add `window.__KEIKO__` in development builds. Every hook is optional.
 
 ```ts
 if (import.meta.env.DEV) {
@@ -100,4 +100,4 @@ pointerUp: () => cursor.release(),
 
 ## debuff games
 
-debuff games don't need `__KEIKO__`: keiko drives them through debuff's dev tools, so state is the scene's `inspect()`, and params and commands are debuff's. See [the debuff recipe](./engines#debuff).
+debuff games don't need `__KEIKO__`: Keiko drives them through debuff's dev tools, so state is the scene's `inspect()`, and params and commands are debuff's. See [the debuff recipe](./engines#debuff).

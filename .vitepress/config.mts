@@ -138,7 +138,7 @@ export default defineConfig({
     siteTitle: "debuff",
     nav: [
       { text: "Docs", link: "/docs/getting-started", activeMatch: "^/docs/" },
-      { text: "keiko", link: "/keiko/", activeMatch: "^/keiko/" },
+      { text: "Keiko", link: "/keiko/", activeMatch: "^/keiko/" },
       { text: "Examples", link: "/examples" },
       { text: "Benchmarks", link: "/benchmarks" },
       { text: "Blog", link: "/blog/", activeMatch: "^/blog/" },
@@ -171,7 +171,7 @@ export default defineConfig({
         {
           text: "Tooling",
           items: [
-            { text: "Logic tests (keiko)", link: "/docs/testing" },
+            { text: "Logic tests (Keiko)", link: "/docs/testing" },
             { text: "Testing with scenarios", link: "/docs/scenarios" },
             { text: "Desktop builds", link: "/docs/desktop" },
             { text: "Working with AI agents", link: "/docs/agents" },
@@ -181,7 +181,7 @@ export default defineConfig({
       ],
       "/keiko/": [
         {
-          text: "keiko",
+          text: "Keiko",
           items: [
             { text: "Overview", link: "/keiko/" },
             { text: "Getting started", link: "/keiko/getting-started" },
@@ -212,7 +212,7 @@ export default defineConfig({
         {
           text: "Reference",
           items: [
-            { text: "How keiko works", link: "/keiko/how-it-works" },
+            { text: "How Keiko works", link: "/keiko/how-it-works" },
             { text: "API", link: "/keiko/api" },
             { text: "Articles", link: "/blog/#keiko" },
           ],

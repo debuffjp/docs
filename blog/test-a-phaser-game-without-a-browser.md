@@ -2,7 +2,7 @@
 title: "How to test a Phaser game without a browser"
 description: "Write fast, deterministic tests for a Phaser 4 game with keiko: run the real game in Node, hold keys, click, and check movement and timing, with no browser."
 short: "Test a Phaser game without a browser"
-category: keiko
+category: Keiko
 date: 2026-10-17
 ---
 
@@ -20,7 +20,7 @@ npm install -D keiko
 
 ## 2. Let tests read the game
 
-keiko can already play your game: it steps Phaser's loop on a virtual clock and sends real keyboard and pointer events. To check what happened, expose a snapshot of the state you care about, in development builds only:
+Keiko can already play your game: it steps Phaser's loop on a virtual clock and sends real keyboard and pointer events. To check what happened, expose a snapshot of the state you care about, in development builds only:
 
 ```ts
 // src/main.ts
@@ -94,7 +94,7 @@ No browser is launched. Phaser runs with its WebGL or Canvas renderer against co
 
 ## 5. Make it deterministic
 
-Phaser's random generator, `Phaser.Math.RND`, seeds itself from the clock unless you seed it. keiko fixes `Math.random()` and the clock for each game, but to make your game reproducible everywhere, including replays and bug reports, seed it yourself:
+Phaser's random generator, `Phaser.Math.RND`, seeds itself from the clock unless you seed it. Keiko fixes `Math.random()` and the clock for each game, but to make your game reproducible everywhere, including replays and bug reports, seed it yourself:
 
 ```ts
 Phaser.Math.RND.sow(["my-game"]);

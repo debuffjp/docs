@@ -41,7 +41,7 @@ A good habit: when you find a bug, record the inputs that cause it, make a test 
 npx keiko
 ```
 
-keiko exits with 1 when a test fails, so it gates CI as is. Useful flags:
+Keiko exits with 1 when a test fails, so it gates CI as is. Useful flags:
 
 ```bash
 npx keiko tests/levels        # a folder
@@ -58,7 +58,7 @@ A GitHub Actions step:
 - run: npx keiko
 ```
 
-No browser to install: keiko runs in Node.
+No browser to install: Keiko runs in Node.
 
 ## From code
 
@@ -73,7 +73,7 @@ process.exitCode = report.ok ? 0 : 1;
 
 ## Coding agents
 
-keiko suits agents well: no browser, fast feedback, and failures that describe the game instead of a stack trace. A loop that works:
+Keiko suits agents well: no browser, fast feedback, and failures that describe the game instead of a stack trace. A loop that works:
 
 1. Write a test for the behaviour you want, and run it to watch it fail.
 2. Change the game.

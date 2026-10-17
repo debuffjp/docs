@@ -1,18 +1,18 @@
 ---
-title: "Introducing keiko: fast, deterministic tests for web games"
+title: "Introducing Keiko: fast, deterministic tests for web games"
 description: "keiko runs your real web game in Node with no browser, on a virtual clock, so you can test timing, motion and rules in milliseconds. It works with Phaser, PixiJS, KAPLAY, Excalibur, three.js and debuff."
-short: "Introducing keiko"
-category: keiko
+short: "Introducing Keiko"
+category: Keiko
 date: 2026-10-17
 ---
 
-# Introducing keiko
+# Introducing Keiko
 
 Games are hard to test for a reason that has nothing to do with games being special: they run on time. A browser plays a game in real time, at whatever frame rate the machine manages, with input arriving whenever it arrives. Run the same test twice and you get two slightly different games.
 
 So most web games aren't tested at all, beyond someone playing them. Bugs that live in timing, like a jump that got a little lower or a dash that clips through walls at high speed, are found by players.
 
-**keiko** (稽古, Japanese for "practice") is our answer. It's a test runner that plays your real game in Node, with no browser, and puts time under the test's control.
+**Keiko** (稽古, Japanese for "practice") is our answer. It's a test runner that plays your real game in Node, with no browser, and puts time under the test's control.
 
 ```ts
 import { expect, play, test } from "keiko";
@@ -31,7 +31,7 @@ npx keiko
 
 ## Time belongs to the test
 
-keiko loads your game's `index.html` into a headless page and runs its scripts. Everything that tells time is virtual: `requestAnimationFrame`, `setTimeout` and `setInterval`, `performance.now()`, `Date.now()`. `Math.random()` is seeded. A frame only happens when the test asks for one.
+Keiko loads your game's `index.html` into a headless page and runs its scripts. Everything that tells time is virtual: `requestAnimationFrame`, `setTimeout` and `setInterval`, `performance.now()`, `Date.now()`. `Math.random()` is seeded. A frame only happens when the test asks for one.
 
 That makes a game a deterministic function of its input, and tests become exact. Ten seconds of play take a fraction of a second, and they come out the same every time.
 
@@ -57,7 +57,7 @@ fail tests/movement.test.ts › stops in speed ÷ acceleration [player.speed=300
 
 ## Any engine
 
-keiko doesn't use an engine's API. It works through the platform every web game already uses: frames, timers, DOM events, Canvas 2D and WebGL, which in keiko accept every call and draw nothing. We've verified it with Phaser, PixiJS, KAPLAY, Excalibur, three.js and hand-written loops. Each needs one line to let tests read its state:
+Keiko doesn't use an engine's API. It works through the platform every web game already uses: frames, timers, DOM events, Canvas 2D and WebGL, which in keiko accept every call and draw nothing. We've verified it with Phaser, PixiJS, KAPLAY, Excalibur, three.js and hand-written loops. Each needs one line to let tests read its state:
 
 ```ts
 if (import.meta.env.DEV) window.__KEIKO__ = { state: () => ({ player: { x: player.x, y: player.y }, score }) };
@@ -67,12 +67,12 @@ The [engine recipes](/keiko/engines) have a working game and test for each.
 
 ## Built with debuff, for everyone
 
-keiko started inside [debuff](/), our toolkit for 2D browser games, and debuff integrates it deeply: `npx debuff test`, a `run_tests` tool for coding agents, and example tests in every new project. But keiko doesn't depend on debuff, and it's documented as its own tool. If you have a web game, it's for you.
+Keiko started inside [debuff](/), our toolkit for 2D browser games, and debuff integrates it deeply: `npx debuff test`, a `run_tests` tool for coding agents, and example tests in every new project. But keiko doesn't depend on debuff, and it's documented as its own tool. If you have a web game, it's for you.
 
 It's especially good with coding agents. There's no browser to drive, feedback takes milliseconds, and failures describe the game rather than a stack trace. An agent can write a test, watch it fail, change the game and prove the fix.
 
 ## What it doesn't do
 
-keiko doesn't render or play sound, so it can't tell you whether something looks or sounds right. Keep a few screenshot tests in a real browser for that. Use keiko for the hundreds of things your game *does*.
+Keiko doesn't render or play sound, so it can't tell you whether something looks or sounds right. Keep a few screenshot tests in a real browser for that. Use keiko for the hundreds of things your game *does*.
 
 [Read the docs](/keiko/) or [get started](/keiko/getting-started).

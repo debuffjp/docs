@@ -1,9 +1,9 @@
 ---
-title: How keiko works
+title: How Keiko works
 description: "Inside keiko: the headless page, the virtual clock, inert rendering and audio, asset loading, and what keiko can't test."
 ---
 
-# How keiko works
+# How Keiko works
 
 ## The page
 
@@ -32,7 +32,7 @@ A step advances time by one frame. Timers that fall due fire in order, each seei
 
 ## Assets
 
-`fetch` and image loads go to your project's Vite server, so loaders resolve URLs as in a browser. Images are real `<img>` elements; keiko fetches their bytes and reads their size from the header (PNG, GIF, JPEG) without decoding pixels. keiko counts requests in flight: `play()` waits until the game's first loads finish, and `game.settle()` waits for later ones.
+`fetch` and image loads go to your project's Vite server, so loaders resolve URLs as in a browser. Images are real `<img>` elements; keiko fetches their bytes and reads their size from the header (PNG, GIF, JPEG) without decoding pixels. Keiko counts requests in flight: `play()` waits until the game's first loads finish, and `game.settle()` waits for later ones.
 
 ## Layout and input
 

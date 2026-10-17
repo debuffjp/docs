@@ -51,7 +51,7 @@ game.pointerMove(120, 40);    // drag
 game.pointerUp();
 ```
 
-keiko sends pointer, mouse and click events to the first `<canvas>`, with every position field a browser fills in (`clientX`, `pageX`, `offsetX`, `x`). The canvas reports its own size as its position on the page, so engines that map through the canvas's box get the point you aimed at.
+Keiko sends pointer, mouse and click events to the first `<canvas>`, with every position field a browser fills in (`clientX`, `pageX`, `offsetX`, `x`). The canvas reports its own size as its position on the page, so engines that map through the canvas's box get the point you aimed at.
 
 ## Params
 

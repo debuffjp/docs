@@ -2,7 +2,7 @@
 title: "Testing game feel: assert on rules, not frames"
 description: "How to write game tests that survive tuning: measure time-to-condition with until, check invariants with during, trace motion over time, and sweep params, with keiko."
 short: "Testing game feel"
-category: keiko
+category: Keiko
 date: 2026-10-17
 ---
 

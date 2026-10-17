@@ -1,5 +1,5 @@
 ---
-title: Getting started with keiko
+title: Getting started with Keiko
 description: "Install keiko, expose your game's state, write your first test and run it with npx keiko."
 ---
 
@@ -8,7 +8,7 @@ description: "Install keiko, expose your game's state, write your first test and
 ## Requirements
 
 - Node.js 22 or later.
-- A game that loads through an `index.html` with `<script type="module" src="…">`, as Vite projects do. keiko uses your project's Vite config if it has one, so aliases and plugins work.
+- A game that loads through an `index.html` with `<script type="module" src="…">`, as Vite projects do. Keiko uses your project's Vite config if it has one, so aliases and plugins work.
 
 ## Install
 
@@ -34,7 +34,7 @@ if (import.meta.env.DEV) {
 
 `import.meta.env.DEV` is false in production builds, so bundlers drop this code. Put in what you'll want to check: positions, speeds, counts, flags. For TypeScript, add `import type {} from "keiko";` to that file to type `window.__KEIKO__`.
 
-You don't need anything else to play the game: keiko steps your `requestAnimationFrame` loop and sends real keyboard and pointer events. See [Exposing your game](./hooks) for params, commands and engines with their own fixed step.
+You don't need anything else to play the game: Keiko steps your `requestAnimationFrame` loop and sends real keyboard and pointer events. See [Exposing your game](./hooks) for params, commands and engines with their own fixed step.
 
 ## Write a test
 
@@ -73,7 +73,7 @@ pass tests/game.test.ts › the player walks right while ArrowRight is held 41 m
 ✔ 1 passed in 612 ms
 ```
 
-keiko finds `*.test.ts` (and `.js`, `.mts`, `.mjs`) files in `tests/` and `src/`. The first test takes longer while Vite warms up; after that each game boots in tens of milliseconds.
+Keiko finds `*.test.ts` (and `.js`, `.mts`, `.mjs`) files in `tests/` and `src/`. The first test takes longer while Vite warms up; after that each game boots in tens of milliseconds.
 
 ## What `play()` does
 

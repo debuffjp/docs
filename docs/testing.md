@@ -2,9 +2,9 @@
 description: "Fast logic tests for browser games with keiko: play the real game in Node with no browser, on a virtual clock, and assert on timing, motion and state. Works with debuff and any other web game."
 ---
 
-# Logic tests with keiko
+# Logic tests with Keiko
 
-**keiko** (稽古, "practice") runs your real game in Node, with no browser and nothing drawn. Time, input and randomness only move when the test says so, so every run plays out the same way, and a typical test takes tens of milliseconds.
+**Keiko** (稽古, "practice") runs your real game in Node, with no browser and nothing drawn. Time, input and randomness only move when the test says so, so every run plays out the same way, and a typical test takes tens of milliseconds.
 
 ```ts
 // tests/movement.test.ts
@@ -21,7 +21,7 @@ test("buff reaches top speed within a quarter second", async () => {
 
 Use logic tests for how the game **behaves**: movement, timing, rules, scenes, params. Use [scenarios](./scenarios) for how it **looks**, since they compare screenshots in a real browser. New projects have both, and `npm test` runs logic tests first, then scenarios.
 
-keiko is its own package and works with any web game, not just debuff. This page covers using it in a debuff project; the [keiko docs](/keiko/) are the full guide and reference.
+Keiko is its own package and works with any web game, not just debuff. This page covers using it in a debuff project; the [keiko docs](/keiko/) are the full guide and reference.
 
 ## Your first test
 
@@ -166,7 +166,7 @@ Agents run them with the MCP server's `run_tests` tool, and the `add-mechanic`, 
 
 ## Other engines
 
-keiko drives games through the web platform rather than an engine API, so it isn't tied to one engine. It's verified with Phaser, PixiJS, KAPLAY, Excalibur and three.js; see the [engine recipes](/keiko/engines).
+Keiko drives games through the web platform rather than an engine API, so it isn't tied to one engine. It's verified with Phaser, PixiJS, KAPLAY, Excalibur and three.js; see the [engine recipes](/keiko/engines).
 
 - `requestAnimationFrame`, `performance.now()` and `Date.now()` run on a virtual clock, and `Math.random()` is seeded. Each step is one frame.
 - Input arrives as real keyboard and pointer events.

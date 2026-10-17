@@ -192,7 +192,7 @@ if (import.meta.env.DEV) window.__KEIKO__ = { state: () => ({ x: Math.round(x) }
 
 ## debuff
 
-debuff games need nothing extra. keiko detects them from `package.json` and drives them through debuff's dev tools, which every template installs:
+debuff games need nothing extra. Keiko detects them from `package.json` and drives them through debuff's dev tools, which every template installs:
 
 ```ts
 if (import.meta.env.DEV) game.use(devTools({ input }));

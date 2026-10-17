@@ -1,5 +1,5 @@
 ---
-title: keiko API reference
+title: Keiko API reference
 description: "Complete keiko API: test, describe, hooks, play options, Playtest methods, Trace, expect matchers, errors, CLI and runTests."
 ---
 
