@@ -103,6 +103,6 @@ Size is the other measurable difference. The whole debuff runtime is smaller tha
 
 That is a narrow advantage, and it comes with real costs. debuff is young (0.x) and 2D only. It has no editor, a small community and few third-party resources. We haven't measured how often agents succeed in each engine, so we don't claim they finish games faster in debuff. We can only describe what each engine lets an agent check.
 
-For a broader comparison with each engine, see [debuff vs Phaser](./debuff-vs-phaser), [PixiJS](./debuff-vs-pixijs), [KAPLAY](./debuff-vs-kaplay), [Excalibur](./debuff-vs-excalibur) and [Godot](./debuff-vs-godot).
+For a broader comparison with each engine, see [debuff vs Phaser](./debuff-vs-phaser), [PixiJS](./debuff-vs-pixijs), [KAPLAY](./debuff-vs-kaplay), [Excalibur](./debuff-vs-excalibur), [Godot](./debuff-vs-godot) and [Babylon.js](./debuff-vs-babylonjs).
 
 To try the loop yourself, the walkthrough [Build a game with Claude Code and debuff](./build-a-game-with-claude-code) goes through it step by step.
