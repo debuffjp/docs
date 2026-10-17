@@ -5,6 +5,7 @@ export interface Post {
   description: string;
   url: string;
   date: string;
+  category: string;
   /** Position in the carousel (1 first); absent means not pinned. */
   pinned?: number;
 }
@@ -21,6 +22,7 @@ export default createContentLoader("blog/*.md", {
         title: frontmatter.title,
         description: frontmatter.description,
         url,
+        category: frontmatter.category ?? "Guides",
         date: new Date(frontmatter.date).toISOString().slice(0, 10),
         pinned: typeof frontmatter.pinned === "number" ? frontmatter.pinned : undefined,
       }))

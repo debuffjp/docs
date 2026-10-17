@@ -1,6 +1,8 @@
 ---
 title: "debuff vs KAPLAY: two small toolkits for 2D browser games"
 description: "debuff and KAPLAY (the successor to Kaboom.js) compared: API style, size, playground, testing and coding-agent support, and when each fits."
+short: "debuff vs KAPLAY"
+category: Comparisons
 date: 2026-10-17
 ---
 

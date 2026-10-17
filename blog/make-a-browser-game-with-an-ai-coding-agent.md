@@ -1,6 +1,8 @@
 ---
 title: "How to make a browser game with an AI coding agent"
 description: "Build a 2D browser game with Claude Code or another coding agent. The agent can play the game, read its state and check its own changes, and the creative calls stay with you."
+short: "Make a game with an AI agent"
+category: Coding agents
 date: 2026-10-17
 ---
 

@@ -1,6 +1,8 @@
 ---
 title: "Build a game with Claude Code and debuff"
 description: "A hands-on walkthrough: set up a debuff game with Claude Code, flag a moment and have the agent reproduce it with game_replay, tune params, and verify with scenarios and fuzz."
+short: "Build a game with Claude Code"
+category: Coding agents
 date: 2026-10-17
 pinned: 2
 ---

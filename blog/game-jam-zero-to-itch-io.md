@@ -1,6 +1,8 @@
 ---
 title: "Making a game for a game jam: from zero to itch.io"
 description: "A practical plan for finishing a browser game in a 48-hour game jam: scope, a running start, tuning feel fast, and uploading a small web build to itch.io."
+short: "Game jam to itch.io"
+category: Guides
 date: 2026-10-17
 ---
 

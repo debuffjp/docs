@@ -1,6 +1,8 @@
 ---
 title: "Coding agents and browser game engines: how debuff compares"
 description: "What a coding agent can actually do in debuff (MCP, live attach, notes, replays, scenarios, fuzz) and what Phaser, PixiJS, KAPLAY, Excalibur and Godot offer agents today."
+short: "Coding agents: how debuff compares"
+category: Coding agents
 date: 2026-10-17
 pinned: 1
 ---

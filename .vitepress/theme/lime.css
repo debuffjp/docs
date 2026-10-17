@@ -102,3 +102,8 @@
 .VPNavBarMenuLink[href$="#create-a-game"]:hover {
   background: #ddfc6c;
 }
+
+/* Blog figures: rounded images, quiet captions with credits. */
+.vp-doc figure { margin: 28px 0; }
+.vp-doc figure img { border-radius: 12px; max-height: 520px; width: auto; margin: 0 auto; }
+.vp-doc figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--vp-c-text-2); text-align: center; }

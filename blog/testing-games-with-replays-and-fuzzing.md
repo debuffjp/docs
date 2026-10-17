@@ -1,6 +1,8 @@
 ---
 title: "Testing a game with deterministic replays and fuzzing"
 description: "Games are hard to test, but deterministic games aren't. How a fixed-step clock and seeded RNG enable scenario tests, exact replays and fuzz playtesting for 2D web games."
+short: "Replays and fuzzing"
+category: Guides
 date: 2026-10-17
 ---
 

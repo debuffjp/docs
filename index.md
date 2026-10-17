@@ -4,6 +4,7 @@ title: debuff, a 2D web game toolkit
 titleTemplate: false
 description: "debuff is an open-source toolkit that handles the basics of 2D browser games, so you can spend your time on the game you imagined."
 hero:
+  name: debuff
   text: more room for play.
   tagline: Open-source toolkit that handles the basics of 2D browser games, so you can build the game you imagined.
   actions:

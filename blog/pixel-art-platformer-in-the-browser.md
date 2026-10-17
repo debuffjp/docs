@@ -1,6 +1,8 @@
 ---
 title: "How to make a pixel-art platformer in the browser"
 description: "Make a 2D pixel-art platformer that runs in any browser: tilemaps from Tiled or LDtk, crisp pixels, and a jump that feels good thanks to coyote time and jump buffering."
+short: "Pixel-art platformer"
+category: Guides
 date: 2026-10-17
 ---
 

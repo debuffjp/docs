@@ -1,6 +1,8 @@
 ---
 title: "debuff vs PixiJS: a renderer or a game toolkit?"
 description: "debuff and PixiJS compared for 2D browser games: what each includes, measured sprite throughput, bundle size, testing and coding-agent support."
+short: "debuff vs PixiJS"
+category: Comparisons
 date: 2026-10-17
 ---
 

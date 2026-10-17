@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { withBase } from "vitepress";
+import { BLOG_CATEGORIES } from "../../blog/categories";
 import { data as posts } from "../../blog/posts.data";
 
 const pinned = computed(() => posts.filter((p) => p.pinned !== undefined).sort((a, b) => a.pinned! - b.pinned!));
+const groups = computed(() =>
+  BLOG_CATEGORIES.map((name) => ({ name, posts: posts.filter((p) => p.category === name) })).filter((g) => g.posts.length),
+);
 const current = ref(0);
 const track = ref<HTMLElement>();
 
@@ -78,14 +82,16 @@ function onKey(e: KeyboardEvent) {
       </div>
     </section>
 
-    <h2 class="all">All posts</h2>
-    <ul class="list">
-      <li v-for="post in posts" :key="post.url">
-        <a :href="withBase(post.url)">{{ post.title }}</a>
-        <time :datetime="post.date">{{ formatDate(post.date) }}</time>
-        <p>{{ post.description }}</p>
-      </li>
-    </ul>
+    <section v-for="g in groups" :key="g.name" class="group">
+      <h2 :id="g.name.toLowerCase().replace(/\s+/g, '-')" class="all">{{ g.name }}</h2>
+      <ul class="list">
+        <li v-for="post in g.posts" :key="post.url">
+          <a :href="withBase(post.url)">{{ post.title }}</a>
+          <time :datetime="post.date">{{ formatDate(post.date) }}</time>
+          <p>{{ post.description }}</p>
+        </li>
+      </ul>
+    </section>
   </div>
 </template>
 
