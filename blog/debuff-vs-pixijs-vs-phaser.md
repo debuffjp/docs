@@ -15,7 +15,7 @@ If you're making a 2D game for the browser, you'll probably end up choosing betw
 | What it is | A fast 2D renderer | A full-featured game framework | A small toolkit for 2D browser games |
 | Game loop, scenes, input | Bring your own | Built in | Built in (fixed-step clock, seeded RNG) |
 | Physics | Bring your own | Built in (Arcade, Matter) | Tile collision; bring your own physics |
-| Maturity and community | Large, long-running | Large, long-running, many tutorials | New (0.1, early development) |
+| Maturity and community | Large, long-running | Large, long-running, many tutorials | New (0.2, early development) |
 | Testing | Bring your own | Bring your own | Deterministic scenarios, screenshot baselines, fuzzing |
 | AI coding agents | Read code | Read code | MCP server: agents play, inspect and test the open game |
 | Starter size, shipped | Depends on your code | Larger, full framework | About 13 kB brotli |
@@ -40,7 +40,7 @@ debuff is newer and deliberately smaller. Its bet is that the hard part of a sma
 - **Agents that can see.** The MCP server lets Claude Code and other agents attach to the game you have open, read state, capture frames and send input. You watch what they do in the dev panel.
 - **Small builds.** The starter ships at about 13 kB brotli, and the build fails if dev-only code leaks into production.
 
-The honest trade-off is that debuff is 0.1. APIs will change, there's no built-in rigid-body physics, and the community is just starting. If you need stability today, Phaser is the safer bet.
+The honest trade-off is that debuff is 0.2. APIs will change, there's no built-in rigid-body physics, and the community is just starting. If you need stability today, Phaser is the safer bet.
 
 ## Try debuff in a minute
 
