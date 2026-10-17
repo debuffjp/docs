@@ -16,7 +16,7 @@
 3. Read `game_notes` first in live mode: moments the human flagged, with the game state at that tick.
 4. `game_state`, `game_capture`, `game_frames` (per-frame update/render ms, dropped frames, cause), `game_errors` (explained: kind your-code | debuff-usage | debuff-bug | outside, plus a source-mapped file:line and a hint).
 5. Change feel through params (`game_params`, `game_set_param`) before changing code. Propose creative changes to the human; don't decide art or feel alone.
-6. Verify with `run_scenarios` (JSON scripts with screenshot baselines). Ship with `build`: its `leaks` list must be empty.
+6. Verify with `run_tests` (logic tests in tests/*.test.ts with keiko: the real game in Node, milliseconds, assert on inspect() state, until/during/trace, sweeps over params) and `run_scenarios` (JSON scripts with screenshot baselines). Ship with `build`: its `leaks` list must be empty.
 - A loop error stops the game. Fix the cause, then call `game_pause` with `{ paused: false }` to resume.
 - For `debuff-bug` errors, tell the human and share `reportUrl`. Don't work around debuff internals.
 

@@ -11,6 +11,7 @@ const ORDER = [
   "assets",
   "tilemaps",
   "params",
+  "testing",
   "scenarios",
   "agents",
   "plugins",

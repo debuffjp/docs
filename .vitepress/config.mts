@@ -170,6 +170,7 @@ export default defineConfig({
         {
           text: "Tooling",
           items: [
+            { text: "Logic tests (keiko)", link: "/docs/testing" },
             { text: "Testing with scenarios", link: "/docs/scenarios" },
             { text: "Desktop builds", link: "/docs/desktop" },
             { text: "Working with AI agents", link: "/docs/agents" },
