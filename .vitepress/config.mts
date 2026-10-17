@@ -78,6 +78,7 @@ export default defineConfig({
       { text: "Docs", link: "/docs/getting-started", activeMatch: "^/docs/" },
       { text: "Examples", link: "/examples" },
       { text: "Benchmarks", link: "/benchmarks" },
+      { text: "Blog", link: "/blog/", activeMatch: "^/blog/" },
       { text: "API", link: "/api/", activeMatch: "^/api/" },
       { text: "Roadmap", link: "https://github.com/debuffjp/debuff/blob/main/docs/roadmap.md" },
       // Styled as the primary button (lime.css).
@@ -111,6 +112,18 @@ export default defineConfig({
             { text: "Desktop builds", link: "/docs/desktop" },
             { text: "Working with AI agents", link: "/docs/agents" },
             { text: "Plugins", link: "/docs/plugins" },
+          ],
+        },
+      ],
+      "/blog/": [
+        {
+          text: "Blog",
+          items: [
+            { text: "Make a game with an AI agent", link: "/blog/make-a-browser-game-with-an-ai-coding-agent" },
+            { text: "debuff vs PixiJS vs Phaser", link: "/blog/debuff-vs-pixijs-vs-phaser" },
+            { text: "Pixel-art platformer", link: "/blog/pixel-art-platformer-in-the-browser" },
+            { text: "Replays and fuzzing", link: "/blog/testing-games-with-replays-and-fuzzing" },
+            { text: "Game jam to itch.io", link: "/blog/game-jam-zero-to-itch-io" },
           ],
         },
       ],
