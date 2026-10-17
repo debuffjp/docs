@@ -9,6 +9,7 @@ import CopyCommand from "./CopyCommand.vue";
 import NotFound from "./NotFound.vue";
 import PlayEmbed from "./PlayEmbed.vue";
 import PlinkoHero from "./PlinkoHero.vue";
+import SizeChart from "./SizeChart.vue";
 import "./lime.css";
 
 export default {
@@ -19,6 +20,7 @@ export default {
     app.component("PlayEmbed", PlayEmbed);
     app.component("CopyCommand", CopyCommand);
     app.component("BlogIndex", BlogIndex);
+    app.component("SizeChart", SizeChart);
   },
   // A confused buff instead of the default 404; a playable debuff demo instead of a hero image.
   Layout: () =>

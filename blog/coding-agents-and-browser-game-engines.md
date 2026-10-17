@@ -95,6 +95,12 @@ Where Godot is stronger: almost everything an engine can have. A full editor, 2D
 
 Phaser and PixiJS give agents good documentation, and Godot's community has built MCP servers that run the project and read its output. What we didn't find anywhere else is a loop between you and the agent on the same running web game. You flag a moment, and the agent receives the state at that tick. It reproduces the moment exactly as a scenario, tunes typed params in your tab where you can undo them, and verifies the fix with scenarios and fuzz.
 
+Size is the other measurable difference. The whole debuff runtime is smaller than any of the web engines here:
+
+<SizeChart />
+
 That is a narrow advantage, and it comes with real costs. debuff is young (0.x) and 2D only. It has no editor, a small community and few third-party resources. We haven't measured how often agents succeed in each engine, so we don't claim they finish games faster in debuff. We can only describe what each engine lets an agent check.
+
+For a broader comparison with each engine, see [debuff vs Phaser](./debuff-vs-phaser), [PixiJS](./debuff-vs-pixijs), [KAPLAY](./debuff-vs-kaplay), [Excalibur](./debuff-vs-excalibur) and [Godot](./debuff-vs-godot).
 
 To try the loop yourself, the walkthrough [Build a game with Claude Code and debuff](./build-a-game-with-claude-code) goes through it step by step.
