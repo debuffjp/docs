@@ -2,7 +2,7 @@
 title: "debuff vs Godot for browser games"
 description: "debuff and Godot's web export compared for 2D browser games: editor, features, web export constraints, testing and coding-agent support, and when to use each."
 short: "debuff vs Godot"
-category: Comparisons
+category: "Compared: engines and editors"
 date: 2026-10-17
 ---
 

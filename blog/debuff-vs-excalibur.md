@@ -2,7 +2,7 @@
 title: "debuff vs Excalibur: comparing two TypeScript game engines for the web"
 description: "debuff and Excalibur.js compared for 2D browser games: built-in features, size, testing tools and coding-agent support, with where Excalibur is ahead."
 short: "debuff vs Excalibur"
-category: Comparisons
+category: "Compared: web libraries"
 date: 2026-10-17
 ---
 

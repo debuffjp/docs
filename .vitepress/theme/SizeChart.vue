@@ -12,10 +12,14 @@ const ALL = [
   { name: "Excalibur", file: "excalibur.min.js", kb: 118 },
   { name: "PixiJS", file: "pixi.min.js", kb: 185 },
   { name: "Phaser", file: "phaser.min.js", kb: 276 },
+  // Shown only when a post names them in `only`.
+  { name: "LittleJS", file: "littlejs.esm.min.js", kb: 138, optIn: true },
+  { name: "three.js", file: "three.module.js, minified", kb: 151, optIn: true },
+  { name: "melonJS", file: "melonjs, bundled and minified", kb: 211, optIn: true },
 ];
 const rows = computed(() => {
   const keep = props.only?.split(",").map((s) => s.trim().toLowerCase());
-  return ALL.filter((r) => r.name === "debuff" || !keep || keep.includes(r.name.toLowerCase()));
+  return ALL.filter((r) => r.name === "debuff" || (keep ? keep.includes(r.name.toLowerCase()) : !r.optIn)).sort((a, b) => a.kb - b.kb);
 });
 const max = computed(() => Math.max(...rows.value.map((r) => r.kb)));
 const root = ref<HTMLElement>();

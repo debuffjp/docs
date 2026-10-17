@@ -2,7 +2,7 @@
 title: "debuff vs Babylon.js: a 2D toolkit and a full 3D engine"
 description: "debuff and Babylon.js compared for browser games: 2D versus 3D, built-in tools like the Playground and Inspector, physics, download size, testing and coding-agent support."
 short: "debuff vs Babylon.js"
-category: Comparisons
+category: "Compared: web libraries"
 date: 2026-10-17
 ---
 

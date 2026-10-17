@@ -2,7 +2,7 @@
 title: "debuff vs Phaser: which should you use for a 2D browser game?"
 description: "debuff and Phaser compared for 2D web games: features, maturity, editor, bundle size, testing and coding-agent support, with where Phaser is the better pick."
 short: "debuff vs Phaser"
-category: Comparisons
+category: "Compared: web libraries"
 date: 2026-10-17
 ---
 

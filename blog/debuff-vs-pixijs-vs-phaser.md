@@ -2,7 +2,7 @@
 title: "debuff vs PixiJS vs Phaser: which 2D web game engine should you pick?"
 description: "An honest comparison of debuff, PixiJS and Phaser for 2D browser games: what each is, bundle size, rendering speed, tooling and AI agent support."
 short: "debuff vs PixiJS vs Phaser"
-category: Comparisons
+category: "Compared: web libraries"
 date: 2026-10-17
 ---
 
