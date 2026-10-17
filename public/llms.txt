@@ -23,6 +23,11 @@
 ## Core API in one breath
 `new Game({ canvas, width, height, pixelArt })`, then `game.add({ id, enter, update(dt), render(draw), inspect() })`, then `game.go(id)` and `game.start()`. `draw.sprite / rect / circle / line / text / clip / withCamera`. `game.params.define(group, schema)` creates typed, live-tunable values. `@debuffjp/input` has action bindings with per-step edges. `@debuffjp/assets` provides a generated manifest and atlases. `@debuffjp/tilemap` imports Tiled and LDtk and handles collision. `@debuffjp/juice` has tweens and particles. `@debuffjp/dev` provides the overlay and `window.__DEBUFF_DEV__`, only inside `if (import.meta.env.DEV)`.
 
+## keiko (logic tests, any web engine)
+- keiko runs the real game in Node with no browser, on a virtual clock (frames, timers, Date, seeded Math.random). Tests: `play()`, `wait/press/hold/tap`, `until`, `during`, `trace`, `test.sweep`, `test.deterministic`, `replay`, `expect`. Run with `npx keiko` (`npx debuff test` in debuff projects; MCP `run_tests`).
+- Non-debuff games expose state as `window.__KEIKO__ = { state, scene?, params?, setParam?, command? }` in dev builds. Verified with Phaser 4, PixiJS 8, KAPLAY, Excalibur, three.js.
+- Docs: https://debuff.jp/keiko/ · Engine recipes: https://debuff.jp/keiko/engines · API: https://debuff.jp/keiko/api
+
 ## Optional
 - All guides in one file: https://debuff.jp/llms-full.txt
 - API reference: https://debuff.jp/api/

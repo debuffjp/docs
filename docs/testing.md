@@ -21,7 +21,7 @@ test("buff reaches top speed within a quarter second", async () => {
 
 Use logic tests for how the game **behaves**: movement, timing, rules, scenes, params. Use [scenarios](./scenarios) for how it **looks**, since they compare screenshots in a real browser. New projects have both, and `npm test` runs logic tests first, then scenarios.
 
-keiko is its own package and works with any web game, not just debuff. See [Other engines](#other-engines).
+keiko is its own package and works with any web game, not just debuff. This page covers using it in a debuff project; the [keiko docs](/keiko/) are the full guide and reference.
 
 ## Your first test
 
@@ -166,7 +166,7 @@ Agents run them with the MCP server's `run_tests` tool, and the `add-mechanic`, 
 
 ## Other engines
 
-keiko drives games through the web platform rather than an engine API, so it isn't tied to one engine. It's tested with Phaser 4 and hand-written canvas loops:
+keiko drives games through the web platform rather than an engine API, so it isn't tied to one engine. It's verified with Phaser, PixiJS, KAPLAY, Excalibur and three.js; see the [engine recipes](/keiko/engines).
 
 - `requestAnimationFrame`, `performance.now()` and `Date.now()` run on a virtual clock, and `Math.random()` is seeded. Each step is one frame.
 - Input arrives as real keyboard and pointer events.
@@ -181,8 +181,8 @@ if (import.meta.env.DEV) {
 }
 ```
 
-Then run `npx keiko`. Every hook is optional; `params`, `setParam`, `command` and a custom `step` are also available. The [keiko README](https://github.com/debuffjp/debuff/tree/main/tooling/keiko) has the full API.
+Then run `npx keiko`. Every hook is optional; see [Exposing your game](/keiko/hooks).
 
 ## What isn't covered
 
-Nothing is drawn or heard: WebGL is unavailable, so games use an inert Canvas 2D context, and Web Audio is silent. Use scenarios for anything visual. `setTimeout` and `setInterval` keep real time, so gameplay driven by timers isn't stepped. One game runs at a time.
+Nothing is drawn or heard: rendering and audio contexts accept every call and do nothing. Use scenarios for anything visual. More in [How keiko works](/keiko/how-it-works).

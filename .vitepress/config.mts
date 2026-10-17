@@ -138,6 +138,7 @@ export default defineConfig({
     siteTitle: "debuff",
     nav: [
       { text: "Docs", link: "/docs/getting-started", activeMatch: "^/docs/" },
+      { text: "keiko", link: "/keiko/", activeMatch: "^/keiko/" },
       { text: "Examples", link: "/examples" },
       { text: "Benchmarks", link: "/benchmarks" },
       { text: "Blog", link: "/blog/", activeMatch: "^/blog/" },
@@ -175,6 +176,45 @@ export default defineConfig({
             { text: "Desktop builds", link: "/docs/desktop" },
             { text: "Working with AI agents", link: "/docs/agents" },
             { text: "Plugins", link: "/docs/plugins" },
+          ],
+        },
+      ],
+      "/keiko/": [
+        {
+          text: "keiko",
+          items: [
+            { text: "Overview", link: "/keiko/" },
+            { text: "Getting started", link: "/keiko/getting-started" },
+          ],
+        },
+        {
+          text: "Guides",
+          items: [
+            { text: "Playing the game", link: "/keiko/playing" },
+            { text: "Asking game questions", link: "/keiko/questions" },
+            { text: "Sweeps and determinism", link: "/keiko/determinism" },
+            { text: "Exposing your game", link: "/keiko/hooks" },
+            { text: "Replays, CI and agents", link: "/keiko/replays-and-ci" },
+          ],
+        },
+        {
+          text: "Engines",
+          items: [
+            { text: "Engine recipes", link: "/keiko/engines" },
+            { text: "Phaser", link: "/keiko/engines#phaser" },
+            { text: "PixiJS", link: "/keiko/engines#pixijs" },
+            { text: "KAPLAY", link: "/keiko/engines#kaplay" },
+            { text: "Excalibur", link: "/keiko/engines#excalibur" },
+            { text: "three.js", link: "/keiko/engines#three-js" },
+            { text: "debuff", link: "/keiko/engines#debuff" },
+          ],
+        },
+        {
+          text: "Reference",
+          items: [
+            { text: "How keiko works", link: "/keiko/how-it-works" },
+            { text: "API", link: "/keiko/api" },
+            { text: "Articles", link: "/blog/#keiko" },
           ],
         },
       ],

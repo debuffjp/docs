@@ -19,6 +19,9 @@ const ORDER = [
   "no-build",
 ];
 
+/** keiko's pages, in reading order. */
+const KEIKO = ["index", "getting-started", "playing", "questions", "determinism", "hooks", "engines", "replays-and-ci", "how-it-works", "api"];
+
 /**
  * Write `llms-full.txt`: every guide as plain markdown in one file, so an agent can read all of the
  * docs in a single request. Generated from the same sources as the pages, so it can't drift.
@@ -35,8 +38,10 @@ export function writeLlmsFull(srcDir: string, outDir: string, canonical: string)
     .filter((f) => f.endsWith(".md") && f !== "index.md")
     .map((f) => ({ path: `blog/${f.slice(0, -3)}`, raw: readFileSync(join(srcDir, "blog", f), "utf8") }))
     .sort((a, b) => dateOf(b.raw).localeCompare(dateOf(a.raw)));
+  const keiko = KEIKO.map((name) => ({ path: `keiko/${name}`.replace(/\/index$/, "/"), raw: readFileSync(join(srcDir, "keiko", `${name}.md`), "utf8") }));
   const pages = [
     ...ORDER.map((name) => ({ path: `docs/${name}`, raw: readFileSync(join(srcDir, "docs", `${name}.md`), "utf8") })),
+    ...keiko,
     ...posts,
   ];
   for (const { path, raw } of pages) {
