@@ -86,6 +86,22 @@ game.wait("1s");
 
 To wait in real time for any other reason, use keiko's `sleep(ms)`. Inside a running game, `setTimeout` is the game's virtual timer.
 
+## Async flows
+
+`wait()` and `until()` play frames back to back. Many games do work between frames: a button handler that awaits a tween, a screen that loads its assets before it shows. `run()` and `eventually()` let that work, and any loads, finish between frames, as a browser would:
+
+```ts
+game.tap(play.x, play.y);
+await game.eventually((s) => s.screen === "game", { within: "5s" });
+await game.run("2s");
+```
+
+Game time still only moves in frames, so a slow network doesn't change what happens. If `until()` times out while the game was loading, the error suggests `eventually()`.
+
+## Screen size
+
+`play({ viewport: { width: 390, height: 844 } })` sizes the window, for games that lay out by screen size (default 960×540).
+
 ## Randomness and the clock
 
 `Math.random()` is seeded (`play({ seed })`, default 1) and `Date.now()` starts at a fixed date, so a game that uses them still plays the same way each run. To catch logic that *depends* on them, see [Determinism](./determinism).

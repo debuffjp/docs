@@ -7,7 +7,7 @@ description: "Test Phaser, PixiJS, KAPLAY, Excalibur, three.js, debuff and hand-
 
 Each recipe is a minimal game and test that keiko's own engine checks run: a box that moves right while ArrowRight is held and counts clicks. Copy the hooks into your game and adapt the state.
 
-Tested versions: Phaser 4.2, PixiJS 8.22, KAPLAY 3001.0, Excalibur 0.32, three.js r186, debuff 0.3.
+Tested versions: Phaser 4.2 and 3.x, PixiJS 8.22, KAPLAY 3001.0, Excalibur 0.32, three.js r186, debuff 0.3.
 
 A shared test works for all of them:
 
@@ -34,6 +34,19 @@ test.deterministic("plays the same twice", (game) => game.hold("ArrowRight", 20)
 ```
 
 `ready` waits until the hooks report state, since engines often build their scenes a frame or two after start.
+
+## Real games
+
+Keiko was also run against open-source games it had never seen, adding only a `window.__KEIKO__` hook to each:
+
+| Game | Engine | What the tests check | Deterministic |
+| --- | --- | --- | --- |
+| [Runner](https://github.com/phaserjs/phaser-by-example) | Phaser 3 | score, jump, click to jump, game over | ✔ |
+| [Starshake](https://github.com/phaserjs/phaser-by-example) | Phaser 3 | start, ship speed, shooting | ✔ |
+| [Puzzling Potions](https://github.com/pixijs/open-games) | PixiJS 8 | Play opens a full board | ✔ |
+| [Bubbo Bubbo](https://github.com/pixijs/open-games) | PixiJS 8 | Play reaches the game | ✘ ([why](./how-it-works#known-limits)) |
+
+Games with async UI flows (press Play, a tween finishes, the next screen loads its assets) use `run()` and `eventually()`; see [Async flows](./playing#async-flows).
 
 ## Phaser
 

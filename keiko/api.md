@@ -36,6 +36,7 @@ Returns `Promise<Playtest<S>>`. `S` types `game.state`.
 | `seed` | `1` | `Math.random` seed |
 | `fps` | `60` | Virtual clock frame rate |
 | `webgl` | `true` (debuff: `false`) | Offer WebGL contexts |
+| `viewport` | `{ width: 960, height: 540 }` | Window size |
 
 ## `Playtest<S>`
 
@@ -54,12 +55,14 @@ Returns `Promise<Playtest<S>>`. `S` types `game.state`.
 | `command(name, ...args)` | Returns the command's result |
 | `replay(fileOrScenario)` | Play scenario steps |
 | `await settle(timeout?)` | Wait in real time for the game's requests to finish |
+| `await run(duration, { timeout? })` | Play, letting async code and loads finish between frames |
 
 **Asking:**
 
 | | Returns |
 | --- | --- |
 | `until(condition, { within?, message? })` | Steps taken. `TimeoutError` if not within `within` (default `"10s"`) |
+| `await eventually(condition, { within?, message?, timeout? })` | Steps taken. Like `until`, letting async code and loads finish between frames |
 | `during(duration, check, message?)` | The playtest. `InvariantError` at the step where `check` returned `false` or threw |
 | `trace(pathOrFn, duration)` | A `Trace` |
 

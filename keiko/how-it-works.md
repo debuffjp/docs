@@ -26,17 +26,17 @@ A step advances time by one frame. Timers that fall due fire in order, each seei
 ## Rendering and sound
 
 - **Canvas 2D:** a context that accepts every call. `measureText` and `getImageData` return plausible shapes.
-- **WebGL 1 and 2:** a context with the real constants that accepts every call. Shaders compile, programs link, framebuffers are complete, limits look like a mid-range GPU, and reads return zeros. `play({ webgl: false })` hides WebGL so engines fall back to Canvas 2D.
+- **WebGL 1 and 2:** a context with the real constants that accepts every call. Shaders compile, programs link and report the attributes and uniforms their GLSL declares, framebuffers are complete, limits look like a mid-range GPU, and reads return zeros. `play({ webgl: false })` hides WebGL so engines fall back to Canvas 2D.
 - **Web Audio:** a context whose nodes accept every call. Decoding succeeds instantly, in both the promise and callback forms.
 - **Fonts:** `document.fonts` reports every font as loaded.
 
 ## Assets
 
-`fetch` and image loads go to your project's Vite server, so loaders resolve URLs as in a browser. Images are real `<img>` elements; keiko fetches their bytes and reads their size from the header (PNG, GIF, JPEG) without decoding pixels. Keiko counts requests in flight: `play()` waits until the game's first loads finish, and `game.settle()` waits for later ones.
+`fetch` and image loads go to your project's Vite server, so loaders resolve URLs as in a browser. Images are real `<img>` elements; keiko fetches their bytes and reads their size from the header (PNG, GIF, JPEG) without decoding pixels. `XMLHttpRequest`, object (`blob:`) URLs and Web Workers work too; workers run inline on the page's thread. Keiko counts requests in flight: `play()` waits until the game's first loads finish, and `game.settle()` waits for later ones.
 
 ## Layout and input
 
-The canvas reports its own pixel size as its box on the page, at the origin. Pointer events carry the same point in every position field (`clientX`, `pageX`, `offsetX`, `x`), so engines get the coordinates you passed whichever field they read. Keys go to the focused element, or the game's canvas when nothing has focus, and bubble to `document` and `window`.
+The canvas's box on the page is its CSS size (`style.width`/`height`, as engines set for high-DPI screens), else its pixel size, at the origin. Pointer events carry the same point in every position field (`clientX`, `pageX`, `offsetX`, `x`), so engines get the coordinates you passed whichever field they read. Keys go to the focused element, or the game's canvas when nothing has focus, and bubble to `document` and `window`.
 
 ## Errors
 
@@ -48,3 +48,11 @@ A game error during a step becomes a `GameError` with the tick and scene, and it
 - **What's heard:** audio graphs run silently.
 - **Real devices:** GPU limits, browser quirks and real performance need real browsers.
 - **Many games at once:** one game runs at a time per process; tests run in sequence.
+
+## Known limits
+
+Keiko assumes the common case and stays fast rather than modelling every browser timing.
+
+- **Races between loads and frames.** `run()` and `eventually()` wait for loads between frames, but work that finishes on its own schedule (a worker's reply, loads that start more loads) can land on a different frame from one run to the next. A game whose logic depends on that order, like Bubbo Bubbo switching screens when its assets arrive, isn't frame-for-frame deterministic. Test those flows by outcome (`eventually(…)`), not exact ticks.
+- **No CSS layout.** DOM-based menus only have the positions the game sets itself.
+- **Not provided:** WebGPU, WebAssembly threads and `SharedArrayBuffer` workers.
